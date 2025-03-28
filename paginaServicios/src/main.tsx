@@ -1,4 +1,4 @@
 import { createRoot } from "react-dom/client";
 import MainPage from "./MainPages/MainPage";
-
-createRoot(document.getElementById("root")!).render(<MainPage />);
+import LandingPage from "./mainPages/LandingPage"
+createRoot(document.getElementById("root")!).render(<LandingPage />);
