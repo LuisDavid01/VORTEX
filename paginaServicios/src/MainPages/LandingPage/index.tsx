@@ -6,8 +6,8 @@ import {
   Code,
   Zap,
   Lightbulb,
-  CircleDollarSign,
   Database,
+  ChartNoAxesCombined,
 } from "lucide-react";
 import Header from "../../Components/Header";
 import Button from "../../Components/Button";
@@ -21,7 +21,7 @@ const WebServiceLanding = () => {
         "Sitios web que se adaptan perfectamente a cualquier dispositivo.",
     },
     {
-      icon: <Code className="w-10 h-10 text-green-500" />,
+      icon: <Code className="w-10 h-10 text-black-500" />,
       title: "Código Limpio",
       description:
         "Desarrollo con las mejores prácticas y tecnologías modernas.",
@@ -32,13 +32,13 @@ const WebServiceLanding = () => {
       description: "Tiempo de espera aprox. 3 semanas.",
     },
     {
-      icon: <CircleDollarSign className="w-10 h-10 text-purple-500" />,
+      icon: <ChartNoAxesCombined className="w-10 h-10 text-green-500" />,
       title: "Alto Rendimiento",
       description:
         "Páginas web rápidas y optimizadas para una excelente experiencia.",
     },
     {
-      icon: <Database className="w-10 h-10 text-orange-500" />,
+      icon: <Database className="w-10 h-10 text-red-500" />,
       title: "Desarrollo y diseño de bases de datos",
       description:
         "Diseñamos bases de datos SQL y NoSql. MySql,Sql server, MongoDb, Sqlite.",
