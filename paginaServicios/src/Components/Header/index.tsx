@@ -1,10 +1,20 @@
+import { useNavigate } from "react-router-dom";
+import Button from "../Button";
 import "./Header.css";
+import { PRIVATE_ROUTES } from "../../Urls";
 
 const Header = () => {
+  const navigate = useNavigate();
+
   return (
     <header className="bg-white shadow-md">
       <div className="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
-        <div className="text-2xl font-bold text-gray-800">WebCraft</div>
+        <div
+          onClick={() => navigate(PRIVATE_ROUTES.Home.url)}
+          className="text-2xl font-bold text-gray-800"
+        >
+          WebCraft
+        </div>
         <nav>
           <a
             href="#servicios"
@@ -15,9 +25,14 @@ const Header = () => {
           <a href="#precios" className="mx-3 text-gray-600 hover:text-blue-600">
             Precios
           </a>
-          <a href="#contacto" className="mx-3 text-blue-600 font-semibold">
+          <Button
+            handleClick={() => {
+              navigate(PRIVATE_ROUTES.Contacts.url);
+            }}
+            buttonClass="mx-3 text-blue-600 font-semibold"
+          >
             Contactar
-          </a>
+          </Button>
         </nav>
       </div>
     </header>
