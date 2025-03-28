@@ -1,0 +1,8 @@
+body {
+    margin: 0px;
+}
+
+.home-header__main__container {
+    background-color: blue;
+    width: 100%;
+}

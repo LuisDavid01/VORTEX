@@ -1,4 +1,4 @@
 import { createRoot } from "react-dom/client";
-import Nigga from "./MainPages/Home";
+import MainPage from "./MainPages/MainPage";
 
-createRoot(document.getElementById("root")!).render(<Nigga />);
+createRoot(document.getElementById("root")!).render(<MainPage />);
