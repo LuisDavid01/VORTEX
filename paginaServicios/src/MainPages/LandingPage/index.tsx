@@ -1,24 +1,27 @@
-
-import React from 'react';
-import { Check, Globe, Code, Zap } from 'lucide-react';
+import React from "react";
+import img1 from "../../Assets/img_1.jpg";
+import { Check, Globe, Code, Zap } from "lucide-react";
 
 const WebServiceLanding = () => {
   const features = [
     {
       icon: <Globe className="w-10 h-10 text-blue-500" />,
       title: "Diseño Responsivo",
-      description: "Sitios web que se adaptan perfectamente a cualquier dispositivo."
+      description:
+        "Sitios web que se adaptan perfectamente a cualquier dispositivo.",
     },
     {
       icon: <Code className="w-10 h-10 text-green-500" />,
       title: "Código Limpio",
-      description: "Desarrollo con las mejores prácticas y tecnologías modernas."
+      description:
+        "Desarrollo con las mejores prácticas y tecnologías modernas.",
     },
     {
       icon: <Zap className="w-10 h-10 text-purple-500" />,
       title: "Alto Rendimiento",
-      description: "Páginas web rápidas y optimizadas para una excelente experiencia."
-    }
+      description:
+        "Páginas web rápidas y optimizadas para una excelente experiencia.",
+    },
   ];
 
   return (
@@ -27,9 +30,21 @@ const WebServiceLanding = () => {
         <div className="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
           <div className="text-2xl font-bold text-gray-800">WebCraft</div>
           <nav>
-            <a href="#servicios" className="mx-3 text-gray-600 hover:text-blue-600">Servicios</a>
-            <a href="#precios" className="mx-3 text-gray-600 hover:text-blue-600">Precios</a>
-            <a href="#contacto" className="mx-3 text-blue-600 font-semibold">Contactar</a>
+            <a
+              href="#servicios"
+              className="mx-3 text-gray-600 hover:text-blue-600"
+            >
+              Servicios
+            </a>
+            <a
+              href="#precios"
+              className="mx-3 text-gray-600 hover:text-blue-600"
+            >
+              Precios
+            </a>
+            <a href="#contacto" className="mx-3 text-blue-600 font-semibold">
+              Contactar
+            </a>
           </nav>
         </div>
       </header>
@@ -40,7 +55,8 @@ const WebServiceLanding = () => {
             Creamos tu Página Web Perfecta
           </h1>
           <p className="text-xl text-gray-600 mb-8">
-            Diseñamos sitios web modernos, funcionales y totalmente personalizados para impulsar tu negocio online.
+            Diseñamos sitios web modernos, funcionales y totalmente
+            personalizados para impulsar tu negocio online.
           </p>
           <div className="flex items-center mb-6">
             <Check className="w-6 h-6 text-green-500 mr-2" />
@@ -60,23 +76,19 @@ const WebServiceLanding = () => {
         </div>
 
         <div className="hidden md:block">
-          <img 
-            src="/api/placeholder/600/400" 
-            alt="Diseño web" 
-            className="rounded-xl shadow-2xl"
-          />
+          <img src={img1} alt="Diseño web" className="rounded-xl shadow-2xl" />
         </div>
       </main>
 
       <section className="bg-white py-16">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-4xl font-bold mb-12 text-gray-800">Nuestras Características</h2>
+          <h2 className="text-4xl font-bold mb-12 text-gray-800">
+            Nuestras Características
+          </h2>
           <div className="grid md:grid-cols-3 gap-8">
             {features.map((feature, index) => (
               <div key={index} className="bg-gray-50 p-6 rounded-xl shadow-md">
-                <div className="flex justify-center mb-4">
-                  {feature.icon}
-                </div>
+                <div className="flex justify-center mb-4">{feature.icon}</div>
                 <h3 className="text-xl font-semibold mb-4">{feature.title}</h3>
                 <p className="text-gray-600">{feature.description}</p>
               </div>
