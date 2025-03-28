@@ -1,6 +1,16 @@
 import React from "react";
 import img1 from "../../Assets/img_1.jpg";
-import { Check, Globe, Code, Zap , CircleDollarSign, Database} from "lucide-react";
+import {
+  Check,
+  Globe,
+  Code,
+  Zap,
+  Lightbulb,
+  CircleDollarSign,
+  Database,
+} from "lucide-react";
+import Header from "../../Components/Header";
+import Button from "../../Components/Button";
 
 const WebServiceLanding = () => {
   const features = [
@@ -19,51 +29,30 @@ const WebServiceLanding = () => {
     {
       icon: <Zap className="w-10 h-10 text-purple-500" />,
       title: "Entregas rapidas",
-      description:
-        "Tiempo de espera aprox. 3 semanas.",
+      description: "Tiempo de espera aprox. 3 semanas.",
     },
-	{
+    {
       icon: <CircleDollarSign className="w-10 h-10 text-purple-500" />,
       title: "Alto Rendimiento",
       description:
         "Páginas web rápidas y optimizadas para una excelente experiencia.",
     },
-	{
+    {
       icon: <Database className="w-10 h-10 text-orange-500" />,
       title: "Desarrollo y diseño de bases de datos",
       description:
         "Diseñamos bases de datos SQL y NoSql. MySql,Sql server, MongoDb, Sqlite.",
     },
-
-	
-	
+    {
+      icon: <Lightbulb className="w-10 h-10 text-yellow-500" />,
+      title: "Personalizable",
+      description: "Crea tu propio espacio digital a medida.",
+    },
   ];
 
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col">
-      <header className="bg-white shadow-md">
-        <div className="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
-          <div className="text-2xl font-bold text-gray-800">WebCraft</div>
-          <nav>
-            <a
-              href="#servicios"
-              className="mx-3 text-gray-600 hover:text-blue-600"
-            >
-              Servicios
-            </a>
-            <a
-              href="#precios"
-              className="mx-3 text-gray-600 hover:text-blue-600"
-            >
-              Precios
-            </a>
-            <a href="#contacto" className="mx-3 text-blue-600 font-semibold">
-              Contactar
-            </a>
-          </nav>
-        </div>
-      </header>
-
+      <Header />
       <main className="flex-grow container mx-auto px-4 grid md:grid-cols-2 items-center gap-12 py-16">
         <div>
           <h1 className="text-5xl font-bold text-gray-800 mb-6">
@@ -85,9 +74,9 @@ const WebServiceLanding = () => {
             <Check className="w-6 h-6 text-green-500 mr-2" />
             <span>Optimizado para SEO</span>
           </div>
-          <button className="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition duration-300 text-lg font-semibold">
+          <Button buttonClass="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition duration-300 text-lg font-semibold">
             Solicitar Presupuesto
-          </button>
+          </Button>
         </div>
 
         <div className="hidden md:block">

@@ -1,33 +1,24 @@
-import { useEffect, useState } from "react";
-import { IHeader } from "../../Interfaces/IHeader";
-import Button from "../Button";
 import "./Header.css";
 
-const Header = (props: IHeader) => {
-  const [isAtTop, setIsAtTop] = useState(true);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY === 0) {
-        setIsAtTop(true); // Se acopla arriba cuando está en el top
-      } else {
-        setIsAtTop(false); // Se mantiene fijo al hacer scroll
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
+const Header = () => {
   return (
-    <header
-      className={`header ${isAtTop ? "at-top" : "fixed"} ${props.headerClass}`}
-    >
-      <div className="header__buttons__container">
-        <Button buttonClass="header__buttons">Lorem Ipsum</Button>
-        <Button buttonClass="header__buttons">Lorem Ipsum</Button>
-        <Button buttonClass="header__buttons">Lorem Ipsum</Button>
-        <Button buttonClass="header__buttons">Lorem Ipsum</Button>
+    <header className="bg-white shadow-md">
+      <div className="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+        <div className="text-2xl font-bold text-gray-800">WebCraft</div>
+        <nav>
+          <a
+            href="#servicios"
+            className="mx-3 text-gray-600 hover:text-blue-600"
+          >
+            Servicios
+          </a>
+          <a href="#precios" className="mx-3 text-gray-600 hover:text-blue-600">
+            Precios
+          </a>
+          <a href="#contacto" className="mx-3 text-blue-600 font-semibold">
+            Contactar
+          </a>
+        </nav>
       </div>
     </header>
   );
