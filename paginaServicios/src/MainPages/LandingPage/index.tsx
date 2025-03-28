@@ -1,6 +1,6 @@
 import React from "react";
 import img1 from "../../Assets/img_1.jpg";
-import { Check, Globe, Code, Zap } from "lucide-react";
+import { Check, Globe, Code, Zap , CircleDollarSign, Database} from "lucide-react";
 
 const WebServiceLanding = () => {
   const features = [
@@ -18,10 +18,25 @@ const WebServiceLanding = () => {
     },
     {
       icon: <Zap className="w-10 h-10 text-purple-500" />,
+      title: "Entregas rapidas",
+      description:
+        "Tiempo de espera aprox. 3 semanas.",
+    },
+	{
+      icon: <CircleDollarSign className="w-10 h-10 text-purple-500" />,
       title: "Alto Rendimiento",
       description:
         "Páginas web rápidas y optimizadas para una excelente experiencia.",
     },
+	{
+      icon: <Database className="w-10 h-10 text-orange-500" />,
+      title: "Desarrollo y diseño de bases de datos",
+      description:
+        "Diseñamos bases de datos SQL y NoSql. MySql,Sql server, MongoDb, Sqlite.",
+    },
+
+	
+	
   ];
 
   return (
