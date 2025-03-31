@@ -1,5 +1,7 @@
 import React from "react";
+import { useState } from "react";
 import img1 from "../../Assets/img_1.jpg";
+import { motion } from "framer-motion";
 import {
   Check,
   Globe,
@@ -9,10 +11,15 @@ import {
   Database,
   ChartNoAxesCombined,
 } from "lucide-react";
+import "./landingPage.css";
+import Modal from "../../Components/Modal";
 import Header from "../../Components/Header";
 import Button from "../../Components/Button";
 
 const WebServiceLanding = () => {
+  const [modalOpen, setModalOpen] = useState(false);
+  const close = () => setModalOpen(false);
+  const open = () => setModalOpen(true);
   const features = [
     {
       icon: <Globe className="w-10 h-10 text-blue-500" />,
@@ -74,10 +81,20 @@ const WebServiceLanding = () => {
             <Check className="w-6 h-6 text-green-500 mr-2" />
             <span>Optimizado para SEO</span>
           </div>
-          <Button buttonClass="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition duration-300 text-lg font-semibold">
+          <Button buttonClass="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition duration-300 text-lg font-semibold"
+          >
             Solicitar Presupuesto
           </Button>
+          <motion.button
+          className="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition duration-300 text-lg font-semibold"
+          onClick={() =>(modalOpen ? close() : open())}
+          >
+            test modal
+          </motion.button>
+          {modalOpen && <Modal modalOpen={modalOpen} handleClose={close} text="test"> </Modal>}
+
         </div>
+        
 
         <div className="hidden md:block">
           <img src={img1} alt="Diseño web" className="rounded-xl shadow-2xl" />
