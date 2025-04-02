@@ -1,50 +1,41 @@
-import { motion } from "framer-motion";
-import Backdrop from "../backdrop";
+/* eslint-disable @typescript-eslint/no-unused-expressions */
+import { useEffect, useState } from "react";
 import { IModalProps } from "../../Interfaces/IModal";
 import "./modal.css";
 
-const dropIn={
-    hidden:{
-        y: "-100vh",
-        opacity: 0
-    },
-    visible:{
-        y: "0",
-        opacity: 1,
-        transition:{
-            duration: 0.1,
-            type: "spring",
-            damping: 0,
-            stiffness: 500,
-
-        }
-    },
-    exit:{
-        y:"100vh",
-        opacity: 0
-    },
-
-
-
-};
-
 const Modal = (props: IModalProps) => {
-    return(
-    <Backdrop onClick={props.handleClose}>
-        <motion.div
-        onClick={(e) => e.stopPropagation()}
-        className="modal"
-        variants={dropIn}
-        initial="hidden"
-        animate="visible"
-        exit="exit"
-        >
-         <p>{props.text}</p>
-         <button onClick={props.handleClose}>Close</button>   
-        </motion.div>
-    </Backdrop>
-    );
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsVisible(true);
+    }, 10);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  const handleBackgroundClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (e.target === e.currentTarget) {
+      setIsVisible(false);
+      setTimeout(() => {
+        props.handleClick && props.handleClick(e);
+      }, 300);
+    }
+  };
+  return (
+    <div
+      className={`modal__container ${isVisible ? "show" : ""}`}
+      onClick={handleBackgroundClick}
+    >
+      <div
+        className={`modal__content ${props.container} ${
+          isVisible ? "show" : ""
+        }`}
+      >
+        {props.body}
+      </div>
+    </div>
+  );
 };
 
 export default Modal;
-
