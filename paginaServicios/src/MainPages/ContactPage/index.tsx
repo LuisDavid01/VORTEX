@@ -1,4 +1,5 @@
-import React, { useState, FormEvent } from "react";
+import React, { useState, useRef, FormEvent } from "react";
+import emailjs from "@emailjs/browser";
 import Header from "../../Components/Header";
 
 // Definimos la interfaz para los datos del formulario
@@ -15,9 +16,12 @@ const ContactPage = () => {
     email: "",
     message: "",
   });
-
-  // Estado para manejar el envío del formulario
+  
+  // Estado para manejar el estado de envío del formulario
   const [submitStatus, setSubmitStatus] = useState<string>("");
+  
+  // Referencia al formulario para su uso con emailjs
+  const formRef = useRef<HTMLFormElement>(null);
 
   // Manejador para actualizar el estado cuando cambian los inputs
   const handleChange = (
@@ -34,18 +38,28 @@ const ContactPage = () => {
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    // Aquí podrías agregar la lógica para enviar el formulario (por ejemplo, a un backend)
-    console.log("Formulario enviado:", formData);
+    // Verificar si la referencia al formulario es válida
+    if (!formRef.current) return;
 
-    // Simular una respuesta de envío
-    setSubmitStatus("Mensaje enviado exitosamente");
+    // Enviar el formulario utilizando emailjs
+    emailjs
+      .sendForm("service_p3fiwx9", "template_va5npil", formRef.current, {
+        publicKey: "16_baQabeZgxwaKgu",
+      })
+      .then(
+        () => {
+          // Indicar que el mensaje fue enviado exitosamente
+          setSubmitStatus("Mensaje enviado exitosamente");
 
-    // Limpiar el formulario
-    setFormData({
-      name: "",
-      email: "",
-      message: "",
-    });
+          // Limpiar los campos del formulario
+          setFormData({ name: "", email: "", message: "" });
+        },
+        (error) => {
+          // Indicar que hubo un error en el envío
+          setSubmitStatus("Error al enviar el mensaje");
+          console.error("Error:", error.text);
+        }
+      );
 
     // Borrar el estado de envío después de 3 segundos
     setTimeout(() => {
@@ -55,17 +69,19 @@ const ContactPage = () => {
 
   return (
     <>
-      <Header />
+      <Header isBackActive={true} />
       <div className="max-w-md mx-auto mt-20 p-6 bg-white shadow-md rounded-lg">
         <h2 className="text-2xl font-bold mb-6 text-center">Contáctanos</h2>
 
+        {/* Mostrar mensaje de estado si existe */}
         {submitStatus && (
           <div className="mb-4 p-3 bg-green-100 text-green-700 rounded">
             {submitStatus}
           </div>
         )}
 
-        <form onSubmit={handleSubmit}>
+        {/* Formulario de contacto */}
+        <form ref={formRef} onSubmit={handleSubmit}>
           <div className="mb-4">
             <label htmlFor="name" className="block mb-2 font-medium">
               Nombre

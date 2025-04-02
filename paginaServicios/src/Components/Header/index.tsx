@@ -2,13 +2,34 @@ import { useNavigate } from "react-router-dom";
 import Button from "../Button";
 import "./Header.css";
 import { PRIVATE_ROUTES } from "../../Urls";
+import { ArrowLeft } from "lucide-react";
+import { IHeader } from "../../Interfaces/IHeader";
 
-const Header = () => {
+const ShowButton = ({ active }: { active?: boolean }) => {
   const navigate = useNavigate();
+  const isBackActive = active ?? false;
+  if(isBackActive){
+    return(
+      <button 
+            onClick={() => navigate(-1)}
+            className=""
+            >
+            <ArrowLeft className="w-10 h-10" /> 
+              </button>
+    );
+  }
 
+  return(<></>);
+  
+}
+
+const Header = (props: IHeader) => {
+  const navigate = useNavigate();
+  
   return (
-    <header className="bg-white shadow-md">
+    <header className="bg-white shadow-md" >
       <div className="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+        <ShowButton active={props.isBackActive}></ShowButton>
         <div
           onClick={() => navigate(PRIVATE_ROUTES.Home.url)}
           className="text-2xl font-bold text-gray-800"
