@@ -6,5 +6,9 @@ export const PRIVATE_ROUTES = {
     Contacts: {
         name: 'Contacts',
         url: '/contacts',
+    },
+    Services: {
+        name: 'Services',
+        url: '/services',
     }
 }

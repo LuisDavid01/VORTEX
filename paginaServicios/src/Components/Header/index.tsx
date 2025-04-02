@@ -1,6 +1,5 @@
 import { useNavigate } from "react-router-dom";
 import Button from "../Button";
-import "./Header.css";
 import { PRIVATE_ROUTES } from "../../Urls";
 import { ArrowLeft } from "lucide-react";
 import { IHeader } from "../../Interfaces/IHeader";
@@ -46,6 +45,14 @@ const Header = (props: IHeader) => {
           <a href="#precios" className="mx-3 text-gray-600 hover:text-blue-600">
             Precios
           </a>
+          <Button
+            handleClick={() => {
+              navigate(PRIVATE_ROUTES.Services.url);
+            }}
+            buttonClass="mx-3 text-blue-600 font-semibold"
+          >
+            Servicios
+          </Button>
           <Button
             handleClick={() => {
               navigate(PRIVATE_ROUTES.Contacts.url);
