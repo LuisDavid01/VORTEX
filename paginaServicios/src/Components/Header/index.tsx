@@ -18,13 +18,18 @@ const Header = () => {
             className="object-contain md:object-cover sd: w-20"
           />
         </div>
-        <nav className="flex items-center gap-4">
-          <a href="#servicios" className=" text-gray-600 hover:text-blue-600">
+
+        <nav>
+        <Button
+            handleClick={() => {
+              navigate(PRIVATE_ROUTES.Services.url);
+            }}
+            buttonClass="mx-3 text-blue-600 font-semibold"
+          >
             Servicios
-          </a>
-          <a href="#precios" className=" text-gray-600 hover:text-blue-600">
-            Precios
-          </a>
+          </Button>
+          
+          
           <Button
             handleClick={() => {
               navigate(PRIVATE_ROUTES.Contacts.url);

@@ -12,8 +12,12 @@ import {
 } from "lucide-react";
 import Header from "../../Components/Header";
 import Button from "../../Components/Button";
+
+import Footer from "../../Components/Footer";
+
 import Modal from "../../Components/Modal";
 import PriceCalculator from "../../Components/PriceCalculator";
+
 
 const WebServiceLanding = () => {
   const [modalOpen, setModalOpen] = useState(false);
@@ -112,11 +116,10 @@ const WebServiceLanding = () => {
           </div>
         </div>
       </section>
-      <footer className="bg-gray-800 text-white py-8">
-        <div className="container mx-auto px-4 text-center">
-          <p>© 2024 WebCraft. Todos los derechos reservados.</p>
-        </div>
-      </footer>
+
+      <Footer/>
+
+    
       {modalOpen && (
         <Modal
           handleClick={() => handleOpenModal(false)}
@@ -127,6 +130,7 @@ const WebServiceLanding = () => {
           }
         />
       )}
+
     </div>
   );
 };
