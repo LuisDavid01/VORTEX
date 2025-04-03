@@ -1,4 +1,5 @@
 import React from "react";
+import { useState } from "react";
 import img1 from "../../Assets/img_1.jpg";
 import {
   Check,
@@ -11,9 +12,16 @@ import {
 } from "lucide-react";
 import Header from "../../Components/Header";
 import Button from "../../Components/Button";
+
 import Footer from "../../Components/Footer";
 
+import Modal from "../../Components/Modal";
+import PriceCalculator from "../../Components/PriceCalculator";
+
+
 const WebServiceLanding = () => {
+  const [modalOpen, setModalOpen] = useState(false);
+
   const features = [
     {
       icon: <Globe className="w-10 h-10 text-blue-500" />,
@@ -51,6 +59,10 @@ const WebServiceLanding = () => {
     },
   ];
 
+  const handleOpenModal = (modal: boolean) => {
+    setModalOpen(modal);
+  };
+
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col">
       <Header />
@@ -75,7 +87,10 @@ const WebServiceLanding = () => {
             <Check className="w-6 h-6 text-green-500 mr-2" />
             <span>Optimizado para SEO</span>
           </div>
-          <Button buttonClass="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition duration-300 text-lg font-semibold">
+          <Button
+            handleClick={handleOpenModal}
+            buttonClass="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition duration-300 text-lg font-semibold"
+          >
             Solicitar Presupuesto
           </Button>
         </div>
@@ -101,7 +116,21 @@ const WebServiceLanding = () => {
           </div>
         </div>
       </section>
+
       <Footer/>
+
+    
+      {modalOpen && (
+        <Modal
+          handleClick={() => handleOpenModal(false)}
+          body={
+            <div className="container mx-auto px-4 ">
+              <PriceCalculator />
+            </div>
+          }
+        />
+      )}
+
     </div>
   );
 };
