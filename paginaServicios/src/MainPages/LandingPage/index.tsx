@@ -38,7 +38,7 @@ const WebServiceLanding = () => {
     {
       icon: <Zap className="w-10 h-10 text-purple-500" />,
       title: "Entregas rapidas",
-      description: "Tiempo de espera aprox. 3 semanas.",
+      description: "Proyectos de calidad adaptados a las fechas limite de su negocio",
     },
     {
       icon: <ChartNoAxesCombined className="w-10 h-10 text-green-500" />,
@@ -91,7 +91,7 @@ const WebServiceLanding = () => {
             handleClick={handleOpenModal}
             buttonClass="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition duration-300 text-lg font-semibold"
           >
-            Solicitar Presupuesto
+            Consultar presupuesto
           </Button>
         </div>
 
