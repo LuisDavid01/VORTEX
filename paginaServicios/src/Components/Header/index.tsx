@@ -34,7 +34,7 @@ const Header = (props: IHeader) => {
           onClick={() => navigate(PRIVATE_ROUTES.Home.url)}
           className="text-2xl font-bold text-gray-800"
         >
-          WebCraft
+          <img src="https://i.imgur.com/kOJnUWG.png" alt="VORTEX-icon" className="w-25 object-contain md:object-cover sd: w-20"/>
         </div>
         <nav>
           <a
