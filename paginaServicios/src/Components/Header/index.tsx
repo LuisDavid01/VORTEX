@@ -36,16 +36,7 @@ const Header = (props: IHeader) => {
           WebCraft
         </div>
         <nav>
-          <a
-            href="#servicios"
-            className="mx-3 text-gray-600 hover:text-blue-600"
-          >
-            Servicios
-          </a>
-          <a href="#precios" className="mx-3 text-gray-600 hover:text-blue-600">
-            Precios
-          </a>
-          <Button
+        <Button
             handleClick={() => {
               navigate(PRIVATE_ROUTES.Services.url);
             }}
@@ -53,6 +44,10 @@ const Header = (props: IHeader) => {
           >
             Servicios
           </Button>
+          <a href="#precios" className="mx-3 text-gray-600 hover:text-blue-600">
+            Precios
+          </a>
+          
           <Button
             handleClick={() => {
               navigate(PRIVATE_ROUTES.Contacts.url);
