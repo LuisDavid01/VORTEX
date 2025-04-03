@@ -10,7 +10,6 @@ import {
   Database,
   ChartNoAxesCombined,
 } from "lucide-react";
-import "./landingPage.css";
 import Header from "../../Components/Header";
 import Button from "../../Components/Button";
 import Modal from "../../Components/Modal";
@@ -122,7 +121,7 @@ const WebServiceLanding = () => {
         <Modal
           handleClick={() => handleOpenModal(false)}
           body={
-            <div className="container mx-auto px-4 py-16">
+            <div className="container mx-auto px-4 ">
               <PriceCalculator />
             </div>
           }
