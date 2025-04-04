@@ -13,14 +13,14 @@ const Header = () => {
           className="text-2xl font-bold text-gray-800 cursor-pointer"
         >
           <img
-            src="https://i.imgur.com/kOJnUWG.png"
+            src="/vortex.svg"
             alt="VORTEX-icon"
-            className="object-contain md:object-cover sd: w-20"
+            className="object-contain md:object-cover sd: w-14"
           />
         </div>
 
         <nav>
-        <Button
+          <Button
             handleClick={() => {
               navigate(PRIVATE_ROUTES.Services.url);
             }}
@@ -28,8 +28,7 @@ const Header = () => {
           >
             Servicios
           </Button>
-          
-          
+
           <Button
             handleClick={() => {
               navigate(PRIVATE_ROUTES.Contacts.url);
