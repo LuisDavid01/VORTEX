@@ -13,16 +13,17 @@ const Header = () => {
           className="flex items-center  text-2xl font-bold text-gray-800 cursor-pointer"
         >
           <img
-            src="https://i.imgur.com/kOJnUWG.png"
+            src="/vortex.svg"
             alt="VORTEX-icon"
             className="object-contain w-20"
+
           />
           <p className="text-sm text-emerald-600 antialiased ">VORTEX</p>
         </div>
         
 
         <nav>
-        <Button
+          <Button
             handleClick={() => {
               navigate(PRIVATE_ROUTES.Services.url);
             }}
@@ -30,8 +31,7 @@ const Header = () => {
           >
             Servicios
           </Button>
-          
-          
+
           <Button
             handleClick={() => {
               navigate(PRIVATE_ROUTES.Contacts.url);

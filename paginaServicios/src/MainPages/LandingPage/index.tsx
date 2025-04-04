@@ -1,6 +1,5 @@
-import React from "react";
 import { useState } from "react";
-import img1 from "../../Assets/img_1.jpg";
+import img1 from "../../Assets/img.1.webp";
 import {
   Check,
   Globe,
@@ -12,12 +11,9 @@ import {
 } from "lucide-react";
 import Header from "../../Components/Header";
 import Button from "../../Components/Button";
-
 import Footer from "../../Components/Footer";
-
 import Modal from "../../Components/Modal";
 import PriceCalculator from "../../Components/PriceCalculator";
-
 
 const WebServiceLanding = () => {
   const [modalOpen, setModalOpen] = useState(false);
@@ -38,7 +34,8 @@ const WebServiceLanding = () => {
     {
       icon: <Zap className="w-10 h-10 text-purple-500" />,
       title: "Entregas rapidas",
-      description: "Proyectos de calidad adaptados a las fechas limite de su negocio",
+      description:
+        "Proyectos de calidad adaptados a las fechas limite de su negocio",
     },
     {
       icon: <ChartNoAxesCombined className="w-10 h-10 text-green-500" />,
@@ -117,9 +114,8 @@ const WebServiceLanding = () => {
         </div>
       </section>
 
-      <Footer/>
+      <Footer />
 
-    
       {modalOpen && (
         <Modal
           handleClick={() => handleOpenModal(false)}
@@ -130,7 +126,6 @@ const WebServiceLanding = () => {
           }
         />
       )}
-
     </div>
   );
 };
