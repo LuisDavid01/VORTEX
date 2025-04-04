@@ -10,18 +10,18 @@ const Header = () => {
       <div className="max-w-full mx-auto px-2 py-4 flex justify-between items-center w-full">
         <div
           onClick={() => navigate(PRIVATE_ROUTES.Home.url)}
-          className="flex items-center  text-2xl font-bold text-gray-800 cursor-pointer"
+          className="flex items-center  text-2xl font-bold text-gray-800 cursor-pointer ml-16"
         >
           <img
             src="/vortex.svg"
             alt="VORTEX-icon"
-            className="object-contain md:object-cover sd: w-20"
+            className="object-contain md:object-cover w-14 "
           />
           <p className="text-sm text-emerald-600 antialiased ">VORTEX</p>
         </div>
         
 
-        <nav>
+        <nav className="mr-16">
           <Button
             handleClick={() => {
               navigate(PRIVATE_ROUTES.Services.url);
