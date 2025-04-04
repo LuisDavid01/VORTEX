@@ -15,8 +15,7 @@ const Header = () => {
           <img
             src="/vortex.svg"
             alt="VORTEX-icon"
-            className="object-contain w-20"
-
+            className="object-contain md:object-cover sd: w-20"
           />
           <p className="text-sm text-emerald-600 antialiased ">VORTEX</p>
         </div>
