@@ -89,9 +89,9 @@ const WebServiceLanding = () => {
           </div>
           <Button
             handleClick={handleOpenModal}
-            buttonClass="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition duration-300 text-lg font-semibold"
+            buttonClass="bg-gradient-to-r from-emerald-400 to-blue-500 text-white px-10 py-4 rounded-full  transition-all duration-300 text-xl font-bold shadow-lg transform hover:scale-102"
           >
-            Consultar presupuesto
+            Cotiza tu sueño digital!
           </Button>
         </div>
 
