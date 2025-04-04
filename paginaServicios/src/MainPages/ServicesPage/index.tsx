@@ -8,10 +8,33 @@ import ecommerceImg from "../../Assets/ServicesImg/ecommerce.webp";
 import microServiceImg from "../../Assets/ServicesImg/microservice.webp";
 import apiImg from "../../Assets/ServicesImg/api.webp";
 import whyUsImg from "../../Assets/ServicesImg/whyus.webp";
+import { useEffect, useRef, useState } from "react";
 
 //import Lucide from "lucide-react";
 
 const ServicePage = () => {
+  const [isVisible, setIsVisible] = useState(false);
+  const imageRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsVisible(entry.isIntersecting);
+      },
+      { threshold: 0.3 } // Se activa cuando el 30% de la imagen es visible
+    );
+
+    if (imageRef.current) {
+      observer.observe(imageRef.current);
+    }
+
+    return () => {
+      if (imageRef.current) {
+        observer.unobserve(imageRef.current);
+      }
+    };
+  }, []);
+
   const servicios = [
     {
       title: "Landing pages",
@@ -59,11 +82,11 @@ const ServicePage = () => {
     <div className="min-h-screen bg-gray-50 flex flex-col">
       <Header />
       <main className="text-center justify-items-center">
-        <h2 className="lg:text-7xl md:text-4xl sm:text-4xl font-extrabold pb-6 text-gray-900 tracking-tight">
+        <h2 className="text-4xl pt-5 font-extrabold pb-6 text-gray-900 tracking-tight">
           Desarollo de software y<br /> aplicaciones
         </h2>
         <div className="container ">
-          <p className="px-6 leading-relaxed text-gray-700">
+          <p className="px-6 text-lg md:text-xl leading-relaxed mt-4 text-gray-700">
             En vortex, nos centramos en ofrecer soluciones seguras, eficientes,
             versatiles y escalables. trabajamos con pequeñas paginas de nicho
             que requiren una pagina sencilla para crear su funnel, empresas en
@@ -90,29 +113,33 @@ const ServicePage = () => {
           </p>
         </div>
       </section>
-      <section className="bg-white pt-8 px-16">
-        <div className="container max-w-6xl mx-auto flex flex-col lg:flex-row items-center justify-between gap-8">
-          <div>
-            <h2 className="text-6xl font-bold  text-gray-800">
-              ¿Porque elegirnos a nosotros?
+      <section className="bg-white pt-8 px-6 lg:px-16">
+        <div className="container max-w-6xl mx-auto flex flex-col-reverse lg:flex-row items-center justify-between gap-6 md:gap-12">
+          <div className="lg:w-1/2 text-center lg:text-left">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-800">
+              ¿Por qué elegirnos a nosotros?
             </h2>
 
-            <div className="container pt-8">
-              <p className="lg:text-xl md:text-xl sm:text-lg px-6 leading-relaxed text-gray-700">
-                Lo que nos diferencia es nuestra capacidad para entregar
-                productos solidos, escalables y utilizando las ultimas
-                tecnologias adaptadas a estandares actuales de diseño y
-                arquitectura. Nuestros servicios estan centrados para consumir
-                la menor cantidad costos de consumo de recursos requeridos
-                haciendonos una excelente opcion para trabajar con servicios en
-                la nube. Adaptandonos a las necesitades de nuestros cliente y
-                sobrepasando expectativas es como queremos ser recordados.
-              </p>
-            </div>
+            <p className="text-lg md:text-xl leading-relaxed text-gray-700 mt-4">
+              Lo que nos diferencia es nuestra capacidad para entregar productos
+              sólidos, escalables y utilizando las últimas tecnologías adaptadas
+              a estándares actuales de diseño y arquitectura. Nuestros servicios
+              están centrados en consumir la menor cantidad de recursos,
+              haciéndonos una excelente opción para trabajar con servicios en la
+              nube. Nos adaptamos a las necesidades de nuestros clientes y
+              buscamos sobrepasar sus expectativas.
+            </p>
           </div>
-          <div className="lg:w-1/2">
+          <div
+            ref={imageRef}
+            className={`lg:w-1/2 flex justify-center transform transition-all duration-1000 ease-in-out ${
+              isVisible
+                ? "opacity-100 translate-y-0"
+                : "opacity-0 translate-y-10"
+            }`}
+          >
             <img
-              className="w-full object-contain rounded shadow-md"
+              className="w-full max-w-sm md:max-w-md lg:max-w-lg object-contain rounded-xl shadow-lg"
               src={whyUsImg}
               alt="Why choose us"
             />
@@ -125,7 +152,7 @@ const ServicePage = () => {
           <h2 className="text-3xl font-bold mb-12 text-gray-800">
             Nuestros servicios
           </h2>
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
             {servicios.map((servicios, index) => (
               <div
                 key={index}
