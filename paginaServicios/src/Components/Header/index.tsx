@@ -6,18 +6,21 @@ const Header = () => {
   const navigate = useNavigate();
 
   return (
-    <header className="relatuve bg-white shadow-md">
-      <div className="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+    <header className="relative bg-white shadow-md">
+      <div className="max-w-full mx-auto px-2 py-4 flex justify-between items-center w-full">
         <div
           onClick={() => navigate(PRIVATE_ROUTES.Home.url)}
-          className="text-2xl font-bold text-gray-800 cursor-pointer"
+          className="flex items-center  text-2xl font-bold text-gray-800 cursor-pointer"
         >
           <img
             src="/vortex.svg"
             alt="VORTEX-icon"
-            className="object-contain md:object-cover sd: w-14"
+            className="object-contain w-20"
+
           />
+          <p className="text-sm text-emerald-600 antialiased ">VORTEX</p>
         </div>
+        
 
         <nav>
           <Button
