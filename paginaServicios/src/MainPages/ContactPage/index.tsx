@@ -1,9 +1,9 @@
-import React, { useState, useRef, FormEvent } from "react";
+import React, { useState, useRef, FormEvent, useCallback } from "react";
 import emailjs from "@emailjs/browser";
 import Header from "../../Components/Header";
 import { IContactFormData } from "../../Interfaces/IContactFormData";
 import Footer from "../../Components/Footer";
-
+import ReCAPTCHA from "react-google-recaptcha";
 const ContactPage = () => {
   const [formData, setFormData] = useState<IContactFormData>({
     name: "",
@@ -12,8 +12,17 @@ const ContactPage = () => {
   });
 
   const [submitStatus, setSubmitStatus] = useState<string>("");
+  const [recaptchaToken, setRecaptchaToken] = useState<string | null>(null);
 
   const formRef = useRef<HTMLFormElement>(null);
+  const recaptchaRef = useRef<ReCAPTCHA>(null);
+
+  const handleRecaptcha = useCallback((token: string | null) => {
+
+      setRecaptchaToken(token);
+
+    
+  }, []);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -28,9 +37,10 @@ const ContactPage = () => {
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (!formRef.current) return;
-
-    emailjs
+    if(!formRef.current || !recaptchaToken){
+      setSubmitStatus("Verifica el captcha");
+    } else{
+      emailjs
       .sendForm("service_p3fiwx9", "template_va5npil", formRef.current, {
         publicKey: "16_baQabeZgxwaKgu",
       })
@@ -39,7 +49,11 @@ const ContactPage = () => {
           setSubmitStatus("Mensaje enviado exitosamente");
 
           setFormData({ name: "", email: "", message: "" });
-        },
+          setRecaptchaToken(null);
+        if (recaptchaRef.current) {
+          recaptchaRef.current.reset()
+        }
+        } ,
         (error) => {
           setSubmitStatus("Error al enviar el mensaje");
           console.error("Error:", error.text);
@@ -49,7 +63,16 @@ const ContactPage = () => {
     setTimeout(() => {
       setSubmitStatus("");
     }, 3000);
+
+
+    }
+
+    
+
+    
   };
+
+  
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -111,8 +134,17 @@ const ContactPage = () => {
               ></textarea>
             </div>
 
+            <div className="mb-4">
+              <ReCAPTCHA
+                ref={recaptchaRef}
+                sitekey={import.meta.env.VITE_KEY} 
+                onChange={handleRecaptcha}
+              />
+            </div>
+
             <button
               type="submit"
+              
               className="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 transition duration-300"
             >
               Enviar Mensaje
