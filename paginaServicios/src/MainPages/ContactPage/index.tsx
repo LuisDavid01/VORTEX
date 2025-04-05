@@ -16,6 +16,14 @@ const ContactPage = () => {
 
   const formRef = useRef<HTMLFormElement>(null);
   const recaptchaRef = useRef<ReCAPTCHA>(null);
+
+  const handleRecaptcha = useCallback((token: string | null) => {
+
+      setRecaptchaToken(token);
+
+    
+  }, []);
+
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
@@ -29,11 +37,10 @@ const ContactPage = () => {
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (!formRef.current || !recaptchaToken){
-      return setSubmitStatus("Verifica el captcha");
-    } 
-
-    emailjs
+    if(!formRef.current || !recaptchaToken){
+      setSubmitStatus("Verifica el captcha");
+    } else{
+      emailjs
       .sendForm("service_p3fiwx9", "template_va5npil", formRef.current, {
         publicKey: "16_baQabeZgxwaKgu",
       })
@@ -56,11 +63,16 @@ const ContactPage = () => {
     setTimeout(() => {
       setSubmitStatus("");
     }, 3000);
+
+
+    }
+
+    
+
+    
   };
 
-  const handleRecaptcha = useCallback((token: string | null) => {
-    setRecaptchaToken(token);
-  }, []);
+  
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -132,7 +144,7 @@ const ContactPage = () => {
 
             <button
               type="submit"
-              disabled={!recaptchaToken}
+              
               className="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 transition duration-300"
             >
               Enviar Mensaje
