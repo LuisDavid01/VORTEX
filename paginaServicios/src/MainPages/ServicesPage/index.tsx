@@ -10,7 +10,6 @@ import apiImg from "../../Assets/ServicesImg/api.webp";
 import whyUsImg from "../../Assets/ServicesImg/whyus.webp";
 import { useEffect, useRef, useState } from "react";
 
-//import Lucide from "lucide-react";
 
 const ServicePage = () => {
   const [isVisible, setIsVisible] = useState(false);
