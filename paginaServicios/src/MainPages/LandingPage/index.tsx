@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import img1 from "../../Assets/img.1.webp";
 import {
   Check,
@@ -14,11 +14,9 @@ import Button from "../../Components/Button";
 import Footer from "../../Components/Footer";
 import Modal from "../../Components/Modal";
 import PriceCalculator from "../../Components/PriceCalculator";
-import Spinner from "../../Components/Spinner"; // Importa el Spinner
 
 const WebServiceLanding = () => {
   const [modalOpen, setModalOpen] = useState(false);
-  const [isLoading, setIsLoading] = useState(true); // Estado para controlar la carga inicial
 
   const features = [
     {
@@ -35,9 +33,9 @@ const WebServiceLanding = () => {
     },
     {
       icon: <Zap className="w-10 h-10 text-purple-500" />,
-      title: "Entregas rápidas",
+      title: "Entregas rapidas",
       description:
-        "Proyectos de calidad adaptados a las fechas límite de su negocio",
+        "Proyectos de calidad adaptados a las fechas limite de su negocio",
     },
     {
       icon: <ChartNoAxesCombined className="w-10 h-10 text-green-500" />,
@@ -49,7 +47,7 @@ const WebServiceLanding = () => {
       icon: <Database className="w-10 h-10 text-red-500" />,
       title: "Desarrollo y diseño de bases de datos",
       description:
-        "Diseñamos bases de datos SQL y NoSql. MySql, Sql Server, MongoDB, SQLite.",
+        "Diseñamos bases de datos SQL y NoSql. MySql,Sql server, MongoDb, Sqlite.",
     },
     {
       icon: <Lightbulb className="w-10 h-10 text-yellow-500" />,
@@ -58,32 +56,10 @@ const WebServiceLanding = () => {
     },
   ];
 
-  useEffect(() => {
-    const loadResources = async () => {
-      const image = new Image();
-      image.src = img1;
-      await new Promise((resolve) => {
-        image.onload = resolve;
-        image.onerror = resolve;
-      });
-
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-
-      setIsLoading(false);
-    };
-
-    loadResources();
-  }, []);
-
   const handleOpenModal = (modal: boolean) => {
     setModalOpen(modal);
   };
 
-  if (isLoading) {
-    return <Spinner overlay bgColor="bg-white" />;
-  }
-
-  // Una vez que carga, muestra el contenido completo
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col">
       <Header />
@@ -110,7 +86,7 @@ const WebServiceLanding = () => {
           </div>
           <Button
             handleClick={handleOpenModal}
-            buttonClass="bg-gradient-to-r from-emerald-400 to-blue-500 text-white px-10 py-4 rounded-full transition-all duration-300 text-xl font-bold shadow-lg transform hover:scale-102"
+            buttonClass="bg-gradient-to-r from-emerald-400 to-blue-500 text-white px-10 py-4 rounded-full  transition-all duration-300 text-xl font-bold shadow-lg transform hover:scale-102"
           >
             Cotiza tu sueño digital!
           </Button>
@@ -144,7 +120,7 @@ const WebServiceLanding = () => {
         <Modal
           handleClick={() => handleOpenModal(false)}
           body={
-            <div className="container mx-auto px-4">
+            <div className="container mx-auto px-4 ">
               <PriceCalculator />
             </div>
           }

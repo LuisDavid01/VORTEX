@@ -1,20 +1,9 @@
-import React, {
-  useState,
-  useRef,
-  FormEvent,
-  useCallback,
-  useEffect,
-} from "react";
+import React, { useState, useRef, FormEvent, useCallback } from "react";
 import emailjs from "@emailjs/browser";
 import Header from "../../Components/Header";
 import { IContactFormData } from "../../Interfaces/IContactFormData";
 import Footer from "../../Components/Footer";
 import ReCAPTCHA from "react-google-recaptcha";
-import "./ContactPage.css";
-import Spinner from "../../Components/Spinner";
-import Modal from "../../Components/Modal";
-import { MailCheck } from "lucide-react";
-
 const ContactPage = () => {
   const [formData, setFormData] = useState<IContactFormData>({
     name: "",
@@ -22,32 +11,17 @@ const ContactPage = () => {
     message: "",
   });
 
-  const [submitErrorStatus, setSubmitErrorStatus] = useState<string>("");
-  const [, setSubmitSuccessStatus] = useState<string>("");
+  const [submitStatus, setSubmitStatus] = useState<string>("");
   const [recaptchaToken, setRecaptchaToken] = useState<string | null>(null);
-  const [loading, setLoading] = useState<boolean>(true);
-  const [submitting, setSubmitting] = useState<boolean>(false);
-  const [modal, setModal] = useState(false);
 
   const formRef = useRef<HTMLFormElement>(null);
   const recaptchaRef = useRef<ReCAPTCHA>(null);
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 1000);
-
-    return () => clearTimeout(timer);
-  }, []);
-
-  useEffect(() => {
-    if (submitErrorStatus) {
-      setSubmitErrorStatus("");
-    }
-  }, [formData, recaptchaToken]);
-
   const handleRecaptcha = useCallback((token: string | null) => {
-    setRecaptchaToken(token);
+
+      setRecaptchaToken(token);
+
+    
   }, []);
 
   const handleChange = (
@@ -63,50 +37,42 @@ const ContactPage = () => {
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    setSubmitErrorStatus("");
-    setSubmitSuccessStatus("");
-
-    if (!formRef.current || !recaptchaToken) {
-      setSubmitErrorStatus("Verifica el captcha");
-      return;
-    }
-
-    setSubmitting(true);
-
-    emailjs
+    if(!formRef.current || !recaptchaToken){
+      setSubmitStatus("Verifica el captcha");
+    } else{
+      emailjs
       .sendForm("service_p3fiwx9", "template_va5npil", formRef.current, {
         publicKey: "16_baQabeZgxwaKgu",
       })
       .then(
         () => {
-          setModal(true);
+          setSubmitStatus("Mensaje enviado exitosamente");
+
           setFormData({ name: "", email: "", message: "" });
           setRecaptchaToken(null);
-          if (recaptchaRef.current) {
-            recaptchaRef.current.reset();
-          }
-        },
+        if (recaptchaRef.current) {
+          recaptchaRef.current.reset()
+        }
+        } ,
         (error) => {
-          setSubmitErrorStatus("Error al enviar el mensaje");
+          setSubmitStatus("Error al enviar el mensaje");
           console.error("Error:", error.text);
         }
-      )
-      .finally(() => {
-        setSubmitting(false);
-      });
+      );
 
     setTimeout(() => {
-      setSubmitSuccessStatus("");
+      setSubmitStatus("");
     }, 3000);
+
+
+    }
+
+    
+
+    
   };
 
-  const handleOpenModal = (modal: boolean) => {
-    setModal(modal);
-  };
-
-  if (loading) {
-    return <Spinner overlay bgColor="bg-white" />;
-  }
+  
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -116,26 +82,10 @@ const ContactPage = () => {
         <div className="max-w-md w-full bg-white shadow-md rounded-lg p-6">
           <h2 className="text-2xl font-bold mb-6 text-center">Contáctanos</h2>
 
-          {submitErrorStatus && (
-            <div className="mb-4 p-3 bg-red-100 text-red-700 rounded">
-              {submitErrorStatus}
+          {submitStatus && (
+            <div className="mb-4 p-3 bg-green-100 text-green-700 rounded">
+              {submitStatus}
             </div>
-          )}
-
-          {modal && (
-            <Modal
-              handleClick={() => handleOpenModal(false)}
-              body={
-                <div className="container mx-auto p-4">
-                  <div className="bg-gray-100 p-8 rounded flex-col flex items-center gap-5">
-                    <MailCheck className="text-green-400 w-15 h-15 " />
-                    <div className="flex justify-center">
-                      Su correo ha sido enviado exitosamente
-                    </div>
-                  </div>
-                </div>
-              }
-            />
           )}
 
           <form ref={formRef} onSubmit={handleSubmit}>
@@ -184,22 +134,18 @@ const ContactPage = () => {
               ></textarea>
             </div>
 
-            <div className="mb-4 w-full">
-              <div className="flex justify-center">
-                <div className="captcha-container">
-                  <ReCAPTCHA
-                    ref={recaptchaRef}
-                    sitekey={import.meta.env.VITE_KEY}
-                    onChange={handleRecaptcha}
-                  />
-                </div>
-              </div>
+            <div className="mb-4">
+              <ReCAPTCHA
+                ref={recaptchaRef}
+                sitekey={import.meta.env.VITE_KEY} 
+                onChange={handleRecaptcha}
+              />
             </div>
 
             <button
               type="submit"
+              
               className="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 transition duration-300"
-              disabled={submitting}
             >
               Enviar Mensaje
             </button>
