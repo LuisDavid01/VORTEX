@@ -1,0 +1,11 @@
+@media screen and (max-width: 400px) {
+    .captcha-container {
+      transform: scale(0.85);
+    }
+  }
+ 
+  @media screen and (max-width: 340px) {
+    .captcha-container {
+      transform: scale(0.75);
+    }
+  }
