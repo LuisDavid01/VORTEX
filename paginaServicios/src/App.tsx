@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import WebServiceLanding from "./MainPages/LandingPage";
 import ContactPage from "./MainPages/ContactPage";
 import ServicePage from "./MainPages/ServicesPage";
+import FAQ from "./MainPages/FAQPage";
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
         <Route path="/" element={<WebServiceLanding />} />
         <Route path="/contacts" element={<ContactPage />} />
         <Route path="/services" element={<ServicePage />} />
+        <Route path="/faq" element={<FAQ />} />
       </Routes>
     </BrowserRouter>
   );

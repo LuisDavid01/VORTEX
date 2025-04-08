@@ -10,5 +10,9 @@ export const PRIVATE_ROUTES = {
     Services: {
         name: 'Services',
         url: '/services',
+    },
+    FAQ: {
+        name: 'faq',
+        url: '/faq',
     }
 }
