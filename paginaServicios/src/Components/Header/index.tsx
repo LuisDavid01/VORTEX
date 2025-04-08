@@ -32,6 +32,15 @@ const Header = () => {
 
           <Button
             handleClick={() => {
+              navigate(PRIVATE_ROUTES.FAQ.url);
+            }}
+            buttonClass="mx-3 text-blue-600 font-semibold"
+          >
+            FAQ
+          </Button>
+
+          <Button
+            handleClick={() => {
               navigate(PRIVATE_ROUTES.Contacts.url);
             }}
             buttonClass="mx-3 text-blue-600 font-semibold"
