@@ -1,30 +1,35 @@
 import { useNavigate } from "react-router-dom";
 import Button from "../Button";
-import "./Header.css";
 import { PRIVATE_ROUTES } from "../../Urls";
 
 const Header = () => {
   const navigate = useNavigate();
 
   return (
-    <header className="bg-white shadow-md">
-      <div className="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+    <header className="relative bg-white shadow-md">
+      <div className="max-w-full mx-auto px-2 py-4 flex justify-between items-center w-full">
         <div
           onClick={() => navigate(PRIVATE_ROUTES.Home.url)}
-          className="text-2xl font-bold text-gray-800"
+          className="flex items-center text-2xl font-bold text-gray-800 cursor-pointer"
         >
-          WebCraft
+          <img
+            src="/vortex.svg"
+            alt="VORTEX-icon"
+            className="object-contain md:object-cover w-14 "
+          />
+          <p className="text-sm text-emerald-600 antialiased ">VORTEX</p>
         </div>
-        <nav>
-          <a
-            href="#servicios"
-            className="mx-3 text-gray-600 hover:text-blue-600"
+
+        <nav className="">
+          <Button
+            handleClick={() => {
+              navigate(PRIVATE_ROUTES.Services.url);
+            }}
+            buttonClass="mx-3 text-blue-600 font-semibold"
           >
             Servicios
-          </a>
-          <a href="#precios" className="mx-3 text-gray-600 hover:text-blue-600">
-            Precios
-          </a>
+          </Button>
+
           <Button
             handleClick={() => {
               navigate(PRIVATE_ROUTES.Contacts.url);
