@@ -3,6 +3,7 @@ import WebServiceLanding from "./MainPages/LandingPage";
 import ContactPage from "./MainPages/ContactPage";
 import ServicePage from "./MainPages/ServicesPage";
 import FAQ from "./MainPages/FAQPage";
+import ShakeQR from "./MainPages/ShakeQR";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Route path="/services" element={<ServicePage />} />
         <Route path="/faq" element={<FAQ />} />
       </Routes>
+      <ShakeQR />
     </BrowserRouter>
   );
 }
