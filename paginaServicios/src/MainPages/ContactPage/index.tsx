@@ -111,7 +111,6 @@ const ContactPage = () => {
 
 		//se crea el objeto de data para enviarselo al api de google
 	const data: IReCaptchaData = {
-		secret: import.meta.env.VITE_PRIVATE_KEY,
 		response: recaptchaToken
 		};
 		//Se llama al metodo para verificar el captcha
