@@ -1,9 +1,10 @@
 // FAQ.tsx
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Header from "../../Components/Header";
 import Footer from "../../Components/Footer";
 import { ChevronDown, ChevronUp, HelpCircle } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import Spinner from "../../Components/Spinner";
 
 interface FAQItem {
   question: string;
@@ -12,6 +13,15 @@ interface FAQItem {
 
 const FAQ: React.FC = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   const faqs: FAQItem[] = [
     {
@@ -35,7 +45,8 @@ const FAQ: React.FC = () => {
         "Aceptamos pagos mediante transferencia bancaria, tarjetas de crédito y débito. También ofrecemos planes de pago en cuotas para proyectos más grandes.",
     },
     {
-      question: "¿Puedo personalizar mi sitio web después de que esté terminado?",
+      question:
+        "¿Puedo personalizar mi sitio web después de que esté terminado?",
       answer:
         "¡Claro! Diseñamos sitios web que son fáciles de personalizar. Además, te proporcionamos herramientas y soporte para que puedas hacer ajustes cuando lo necesites.",
     },
@@ -70,6 +81,10 @@ const FAQ: React.FC = () => {
     setOpenIndex((prevIndex) => (prevIndex === index ? null : index));
   };
 
+  if (loading) {
+    return <Spinner overlay bgColor="bg-white" />;
+  }
+
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col">
       <Header />
@@ -82,7 +97,9 @@ const FAQ: React.FC = () => {
             <div
               key={index}
               className={`bg-gray-100 p-6 rounded-xl shadow-lg border border-gray-200 transition-all duration-300 transform hover:scale-105 hover:shadow-xl ${
-                openIndex === index ? "bg-gradient-to-r from-emerald-50 to-blue-50 border-emerald-300" : ""
+                openIndex === index
+                  ? "bg-gradient-to-r from-emerald-50 to-blue-50 border-emerald-300"
+                  : ""
               }`}
             >
               <button

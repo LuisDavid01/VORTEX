@@ -1,0 +1,37 @@
+.desktop-nav {
+    display: none;
+  }
+  
+  .mobile-nav {
+    display: block;
+  }
+  
+  @media (min-width: 768px) {
+    .desktop-nav {
+      display: flex;
+      align-items: center;
+    }
+  
+    .mobile-nav {
+      display: none;
+    }
+  }
+  
+  .desktop-nav button {
+    position: relative;
+  }
+  
+  .desktop-nav button::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: #2563eb; 
+    transition: width 0.3s ease;
+  }
+  
+  .desktop-nav button:hover::after {
+    width: 100%;
+  }

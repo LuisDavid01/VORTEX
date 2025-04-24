@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+//React
 import React, {
   useState,
   useRef,
@@ -5,23 +7,31 @@ import React, {
   useCallback,
   useEffect,
 } from "react";
+
+//External libraries
 import emailjs from "@emailjs/browser";
-import Header from "../../Components/Header";
-import { IContactFormData } from "../../Interfaces/IContactFormData";
-import Footer from "../../Components/Footer";
+import { MailCheck } from "lucide-react";
 import ReCAPTCHA from "react-google-recaptcha";
-import "./ContactPage.css";
+
+//Interfaces
+import { IContactFormData } from "../../Interfaces/IContactFormData";
+
+//Internal Components
+import Header from "../../Components/Header";
+import Footer from "../../Components/Footer";
 import Spinner from "../../Components/Spinner";
 import Modal from "../../Components/Modal";
-import { MailCheck } from "lucide-react";
+
+//Styles
+import "./ContactPage.css";
 
 const ContactPage = () => {
+  //UseStates
   const [formData, setFormData] = useState<IContactFormData>({
     name: "",
     email: "",
     message: "",
   });
-
   const [submitErrorStatus, setSubmitErrorStatus] = useState<string>("");
   const [, setSubmitSuccessStatus] = useState<string>("");
   const [recaptchaToken, setRecaptchaToken] = useState<string | null>(null);
@@ -29,8 +39,12 @@ const ContactPage = () => {
   const [submitting, setSubmitting] = useState<boolean>(false);
   const [modal, setModal] = useState(false);
 
+  //UseRef
+
   const formRef = useRef<HTMLFormElement>(null);
   const recaptchaRef = useRef<ReCAPTCHA>(null);
+
+  //UseEffect
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -45,6 +59,8 @@ const ContactPage = () => {
       setSubmitErrorStatus("");
     }
   }, [formData, recaptchaToken]);
+
+  //Handlers
 
   const handleRecaptcha = useCallback((token: string | null) => {
     setRecaptchaToken(token);
@@ -115,29 +131,6 @@ const ContactPage = () => {
       <main className="flex-grow flex items-center justify-center p-6">
         <div className="max-w-md w-full bg-white shadow-md rounded-lg p-6">
           <h2 className="text-2xl font-bold mb-6 text-center">Contáctanos</h2>
-
-          {submitErrorStatus && (
-            <div className="mb-4 p-3 bg-red-100 text-red-700 rounded">
-              {submitErrorStatus}
-            </div>
-          )}
-
-          {modal && (
-            <Modal
-              handleClick={() => handleOpenModal(false)}
-              body={
-                <div className="container mx-auto p-4">
-                  <div className="bg-gray-100 p-8 rounded flex-col flex items-center gap-5">
-                    <MailCheck className="text-green-400 w-15 h-15 " />
-                    <div className="flex justify-center">
-                      Su correo ha sido enviado exitosamente
-                    </div>
-                  </div>
-                </div>
-              }
-            />
-          )}
-
           <form ref={formRef} onSubmit={handleSubmit}>
             <div className="mb-4">
               <label htmlFor="name" className="block mb-2 font-medium">
@@ -207,6 +200,26 @@ const ContactPage = () => {
         </div>
       </main>
       <Footer />
+      {submitErrorStatus && (
+        <div className="mb-4 p-3 bg-red-100 text-red-700 rounded">
+          {submitErrorStatus}
+        </div>
+      )}
+      {modal && (
+        <Modal
+          handleClick={() => handleOpenModal(false)}
+          body={
+            <div className="container mx-auto p-4">
+              <div className="bg-gray-100 p-8 rounded flex-col flex items-center gap-5">
+                <MailCheck className="text-green-400 w-15 h-15 " />
+                <div className="flex justify-center">
+                  Su correo ha sido enviado exitosamente
+                </div>
+              </div>
+            </div>
+          }
+        />
+      )}
     </div>
   );
 };
