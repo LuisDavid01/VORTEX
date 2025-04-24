@@ -1,37 +1,53 @@
-import express from 'express';
-import cors from 'cors';
-import dotenv from 'dotenv';
+const express = require('express');
+const  cors = require('cors');
+const dotenv = require( 'dotenv');
 dotenv.config();
 
 
 const app = express();
-app.use(cors({ origin: '*' }));
+const allowedOrigins = [
+  'http://localhost:5173',
+  'https://www.google.com/recaptcha/api/siteverify',
+  'https://vortex-cr.vercel.app/'
+];
+app.use(cors({ origin: allowedOrigins }));
 app.use(express.json());
 
 
 app.post('/VerifyReCaptcha', async (req , res ) => {
     const { response } = req.body;
+    
     if(!response) return res.status(400).json({success: false, error: 'profavor llene el captcha'});
 
     const params = {
-        secret: process.env.Secret_ReCaptcha,
-        response: response.response,
+        "secret": process.env.Secret_ReCaptcha,
+        "response": response,
 
     };
+
+    let encodedParams = new URLSearchParams(params).toString();
 
     const tokenVerified = await fetch('https://www.google.com/recaptcha/api/siteverify', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded',
         },
-        body: new URLSearchParams(params).toString(),
+        body: encodedParams,
       });
+      
       if (!tokenVerified.ok) {
-        return res.status(401).json({ success: false, error: 'Token inválido' });
+        return res.status(500).json({ success: false, error: 'error del servidor' });
       }
   
       const result = await tokenVerified.json();
-      return res.status(200).json(result);
+      
+      if (result != null){
+        
+          if(result.success != null && result.success == true) return res.status(200).json(result);
+          return res.status(400).json(result);
+
+      } 
+      return res.status(400).json({ success: false, error: 'Token inválido' });
 
 
 

@@ -79,19 +79,20 @@ const ContactPage = () => {
 //llamada al api para verificar el reCaptcha
 	const verifyReCaptcha = async (data: IReCaptchaData) => {
 		try{
-			const response = await fetch('https://www.google.com/recaptcha/api/siteverify',{
+			const response = await fetch('http://localhost:8971/VerifyReCaptcha',{
 				method: 'POST',
 				headers: {
-					'Content-Type': 'application/json'
+					'Content-Type': 'application/json',
+
 				},
 				body: JSON.stringify(data)
 			}); 
 			if(!response.ok){
-				throw new Error('Error: ' + response.status);
+				return false;
 			}
 			const result: IReCaptchaResponse = await response.json();
 			if(result.success != null && result.success == true) return true
-			throw new Error('token no valido');
+			return false;
 		}catch(error){
 			console.error('Error de google al verificar ReCaptcha');
 			throw error;
@@ -116,6 +117,10 @@ const ContactPage = () => {
 		//Se llama al metodo para verificar el captcha
 	const tokenVerify = await verifyReCaptcha(data);
 	console.log('token verificado? '+ tokenVerify);
+  if(!tokenVerify && tokenVerify === null){
+    setSubmitErrorStatus("token no valido");
+    return;
+  }
     setSubmitting(true);
 
     emailjs
