@@ -3,6 +3,12 @@ import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 // https://vite.dev/config/
 export default defineConfig({
+  server:{
+    proxy:{
+      '/VerifyReCaptcha' : "https://vortexsecurity.vercel.app/"
+    }
+
+  },
   plugins: [react(),
 	  tailwindcss(),
 	

@@ -81,7 +81,7 @@ const ContactPage = () => {
 //llamada al api para verificar el reCaptcha
 	const verifyReCaptcha = async (data: IReCaptchaData) => {
 		try{
-			const response = await fetch('https://vortexsecurity.vercel.app/VerifyReCaptcha',{
+			const response = await fetch('/VerifyReCaptcha',{
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',
