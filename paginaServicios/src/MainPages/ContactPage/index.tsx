@@ -116,8 +116,7 @@ const ContactPage = () => {
 		};
 		//Se llama al metodo para verificar el captcha
 	const tokenVerify = await verifyReCaptcha(data);
-	console.log('token verificado? '+ tokenVerify);
-  if(!tokenVerify && tokenVerify === null){
+  if(!tokenVerify || tokenVerify === null){
     setSubmitErrorStatus("token no valido");
     return;
   }
