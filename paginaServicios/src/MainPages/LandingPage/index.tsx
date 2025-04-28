@@ -14,47 +14,44 @@ import Button from "../../Components/Button";
 import Footer from "../../Components/Footer";
 import Modal from "../../Components/Modal";
 import PriceCalculator from "../../Components/PriceCalculator";
-import Spinner from "../../Components/Spinner"; // Importa el Spinner
+import Spinner from "../../Components/Spinner";
+import { useTranslation } from "react-i18next";
 
 const WebServiceLanding = () => {
   const [modalOpen, setModalOpen] = useState(false);
-  const [isLoading, setIsLoading] = useState(true); // Estado para controlar la carga inicial
+  const [isLoading, setIsLoading] = useState(true);
+  const { t } = useTranslation();
 
   const features = [
     {
       icon: <Globe className="w-10 h-10 text-blue-500" />,
-      title: "Diseño Responsivo",
-      description:
-        "Sitios web que se adaptan perfectamente a cualquier dispositivo.",
+      title: t("landing.features.responsive.title"),
+      description: t("landing.features.responsive.description"),
     },
     {
       icon: <Code className="w-10 h-10 text-black-500" />,
-      title: "Código Limpio",
-      description:
-        "Desarrollo con las mejores prácticas y tecnologías modernas.",
+      title: t("landing.features.cleanCode.title"),
+      description: t("landing.features.cleanCode.description"),
     },
     {
       icon: <Zap className="w-10 h-10 text-purple-500" />,
-      title: "Entregas rápidas",
-      description:
-        "Proyectos de calidad adaptados a las fechas límite de su negocio",
+      title: t("landing.features.fastDelivery.title"),
+      description: t("landing.features.fastDelivery.description"),
     },
     {
       icon: <ChartNoAxesCombined className="w-10 h-10 text-green-500" />,
-      title: "Alto Rendimiento",
-      description:
-        "Páginas web rápidas y optimizadas para una excelente experiencia.",
+      title: t("landing.features.highPerfomance.title"),
+      description: t("landing.features.highPerfomance.description"),
     },
     {
       icon: <Database className="w-10 h-10 text-red-500" />,
-      title: "Desarrollo y diseño de bases de datos",
-      description:
-        "Diseñamos bases de datos SQL y NoSql. MySql, Sql Server, MongoDB, SQLite.",
+      title: t("landing.features.dataBase.title"),
+      description: t("landing.features.dataBase.description"),
     },
     {
       icon: <Lightbulb className="w-10 h-10 text-yellow-500" />,
-      title: "Personalizable",
-      description: "Crea tu propio espacio digital a medida.",
+      title: t("landing.features.custom.title"),
+      description: t("landing.features.custom.description"),
     },
   ];
 
@@ -90,29 +87,28 @@ const WebServiceLanding = () => {
       <main className="flex-grow container mx-auto px-4 grid md:grid-cols-2 items-center gap-12 py-16">
         <div>
           <h1 className="text-5xl font-bold text-gray-800 mb-6">
-            Creamos tu Página Web Perfecta
+            {t("landing.title")}
           </h1>
           <p className="text-xl text-gray-600 mb-8">
-            Diseñamos sitios web modernos, funcionales y totalmente
-            personalizados para impulsar tu negocio online.
+            {t("landing.description")}
           </p>
           <div className="flex items-center mb-6">
             <Check className="w-6 h-6 text-green-500 mr-2" />
-            <span>Diseño Profesional</span>
+            <span>{t("landing.professionalDesign")}</span>
           </div>
           <div className="flex items-center mb-6">
             <Check className="w-6 h-6 text-green-500 mr-2" />
-            <span>Totalmente Responsive</span>
+            <span>{t("landing.responsive")}</span>
           </div>
           <div className="flex items-center mb-8">
             <Check className="w-6 h-6 text-green-500 mr-2" />
-            <span>Optimizado para SEO</span>
+            <span>{t("landing.seo")}</span>
           </div>
           <Button
             handleClick={handleOpenModal}
             buttonClass="bg-gradient-to-r from-emerald-400 to-blue-500 text-white px-10 py-4 rounded-full transition-all duration-300 text-xl font-bold shadow-lg transform hover:scale-102"
           >
-            Cotiza tu sueño digital!
+            {t("landing.quote")}
           </Button>
         </div>
 
@@ -124,7 +120,7 @@ const WebServiceLanding = () => {
       <section className="bg-white py-16">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-4xl font-bold mb-12 text-gray-800">
-            Nuestras Características
+            {t("landing.featuresTitle")}
           </h2>
           <div className="grid md:grid-cols-3 gap-8">
             {features.map((feature, index) => (
