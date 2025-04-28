@@ -5,15 +5,13 @@ import Footer from "../../Components/Footer";
 import { ChevronDown, ChevronUp, HelpCircle } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import Spinner from "../../Components/Spinner";
-
-interface FAQItem {
-  question: string;
-  answer: string;
-}
+import { useTranslation } from "react-i18next";
 
 const FAQ: React.FC = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
+
+  const { t } = useTranslation();
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -23,59 +21,10 @@ const FAQ: React.FC = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  const faqs: FAQItem[] = [
-    {
-      question: "¿Cuánto tiempo toma crear una página web?",
-      answer:
-        "El tiempo depende de la complejidad del proyecto, pero generalmente tomamos entre 2 y 6 semanas para entregar un sitio web funcional y optimizado.",
-    },
-    {
-      question: "¿Los sitios web son compatibles con todos los dispositivos?",
-      answer:
-        "Sí, todos nuestros sitios web son diseñados con un enfoque responsivo, lo que significa que se adaptan perfectamente a cualquier dispositivo, ya sea móvil, tablet o escritorio.",
-    },
-    {
-      question: "¿Ofrecen servicios de mantenimiento?",
-      answer:
-        "Sí, ofrecemos planes de mantenimiento personalizados para asegurarnos de que tu sitio web esté siempre actualizado y funcionando sin problemas.",
-    },
-    {
-      question: "¿Qué opciones de pago ofrecen?",
-      answer:
-        "Aceptamos pagos mediante transferencia bancaria, tarjetas de crédito y débito. También ofrecemos planes de pago en cuotas para proyectos más grandes.",
-    },
-    {
-      question:
-        "¿Puedo personalizar mi sitio web después de que esté terminado?",
-      answer:
-        "¡Claro! Diseñamos sitios web que son fáciles de personalizar. Además, te proporcionamos herramientas y soporte para que puedas hacer ajustes cuando lo necesites.",
-    },
-    {
-      question: "¿Incluyen optimización para SEO?",
-      answer:
-        "Sí, todos nuestros sitios web están optimizados para SEO, lo que ayuda a que tu página sea más visible en los motores de búsqueda como Google.",
-    },
-    {
-      question: "¿Pueden integrar mi sitio con redes sociales?",
-      answer:
-        "Por supuesto, podemos integrar tu sitio web con tus redes sociales para que puedas compartir contenido fácilmente y aumentar tu presencia online.",
-    },
-    {
-      question: "¿Ofrecen hosting y dominio?",
-      answer:
-        "No ofrecemos hosting ni dominio directamente, pero te asesoramos para elegir las mejores opciones y te ayudamos con la configuración.",
-    },
-    {
-      question: "¿Qué tecnologías utilizan para desarrollar los sitios?",
-      answer:
-        "Utilizamos tecnologías modernas como React, Tailwind CSS, y bases de datos como MySQL y MongoDB, dependiendo de las necesidades del proyecto.",
-    },
-    {
-      question: "¿Puedo ver el progreso de mi proyecto durante el desarrollo?",
-      answer:
-        "Sí, te proporcionamos actualizaciones regulares y acceso a una versión en desarrollo para que puedas seguir el progreso y darnos feedback.",
-    },
-  ];
+  const faqs = t("faqs.items", { returnObjects: true }) as Array<{
+    question: string;
+    answer: string;
+  }>;
 
   const toggleFAQ = (index: number) => {
     setOpenIndex((prevIndex) => (prevIndex === index ? null : index));
@@ -90,7 +39,7 @@ const FAQ: React.FC = () => {
       <Header />
       <main className="flex-grow container mx-auto px-4 py-16">
         <h1 className="text-4xl font-bold text-gray-800 mb-12 text-center">
-          Preguntas Frecuentes
+          {t("faqs.title")}
         </h1>
         <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
           {faqs.map((faq, index) => (

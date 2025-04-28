@@ -24,6 +24,7 @@ import Modal from "../../Components/Modal";
 
 //Styles
 import "./ContactPage.css";
+import { useTranslation } from "react-i18next";
 
 const ContactPage = () => {
   //UseStates
@@ -38,6 +39,7 @@ const ContactPage = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const [submitting, setSubmitting] = useState<boolean>(false);
   const [modal, setModal] = useState(false);
+  const { t } = useTranslation();
 
   //UseRef
 
@@ -130,11 +132,13 @@ const ContactPage = () => {
 
       <main className="flex-grow flex items-center justify-center p-6">
         <div className="max-w-md w-full bg-white shadow-md rounded-lg p-6">
-          <h2 className="text-2xl font-bold mb-6 text-center">Contáctanos</h2>
+          <h2 className="text-2xl font-bold mb-6 text-center">
+            {t("contact.title")}
+          </h2>
           <form ref={formRef} onSubmit={handleSubmit}>
             <div className="mb-4">
               <label htmlFor="name" className="block mb-2 font-medium">
-                Nombre
+                {t("contact.nameLabel")}
               </label>
               <input
                 type="text"
@@ -149,7 +153,7 @@ const ContactPage = () => {
 
             <div className="mb-4">
               <label htmlFor="email" className="block mb-2 font-medium">
-                Correo Electrónico
+                {t("contact.emailLabel")}
               </label>
               <input
                 type="email"
@@ -164,7 +168,7 @@ const ContactPage = () => {
 
             <div className="mb-4">
               <label htmlFor="message" className="block mb-2 font-medium">
-                Mensaje
+                {t("contact.messageLabel")}
               </label>
               <textarea
                 id="message"
@@ -181,6 +185,7 @@ const ContactPage = () => {
               <div className="flex justify-center">
                 <div className="captcha-container">
                   <ReCAPTCHA
+                    hl="en"
                     ref={recaptchaRef}
                     sitekey={import.meta.env.VITE_KEY}
                     onChange={handleRecaptcha}
@@ -194,7 +199,7 @@ const ContactPage = () => {
               className="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 transition duration-300"
               disabled={submitting}
             >
-              Enviar Mensaje
+              {t("contact.submitButton")}
             </button>
           </form>
         </div>
@@ -213,7 +218,7 @@ const ContactPage = () => {
               <div className="bg-gray-100 p-8 rounded flex-col flex items-center gap-5">
                 <MailCheck className="text-green-400 w-15 h-15 " />
                 <div className="flex justify-center">
-                  Su correo ha sido enviado exitosamente
+                  {t("contact.succesMessage")}
                 </div>
               </div>
             </div>

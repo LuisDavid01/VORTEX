@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import Header from "../../Components/Header";
 import Footer from "../../Components/Footer";
-import Spinner from "../../Components/Spinner"; // Importa el Spinner
+import Spinner from "../../Components/Spinner";
 import midImage from "../../Assets/ServicesImg/midimage.webp";
 import dashboard from "../../Assets/ServicesImg/dashboard.webp";
 import databaseImg from "../../Assets/ServicesImg/database.webp";
@@ -10,11 +10,13 @@ import ecommerceImg from "../../Assets/ServicesImg/ecommerce.webp";
 import microServiceImg from "../../Assets/ServicesImg/microservice.webp";
 import apiImg from "../../Assets/ServicesImg/api.webp";
 import whyUsImg from "../../Assets/ServicesImg/whyus.webp";
+import { useTranslation } from "react-i18next";
 
 const ServicePage = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const imageRef = useRef<HTMLDivElement | null>(null);
+  const { t } = useTranslation();
 
   useEffect(() => {
     const checkRef = setInterval(() => {
@@ -68,40 +70,34 @@ const ServicePage = () => {
 
   const servicios = [
     {
-      title: "Landing pages",
+      title: t("services.section3.services.landing.title"),
       img: landingPageImg,
-      descripcion:
-        "Construimos landing pages centrada en conseguir leads para su empresa,\n optimizada para altas tasas de conversion.",
+      descripcion: t("services.section3.services.landing.description"),
     },
     {
-      title: "Comercio electronico",
+      title: t("services.section3.services.comerce.title"),
       img: ecommerceImg,
-      descripcion:
-        "Ofrecemos servicios a emprendedores que quieran modernizar sus sitemas de comercio, te ayudamos a explorar la casi inifita posibilidad de crecimiento que ofrece internet. Soportamos metodos de pago modernos y buenas practicas para mantener a tu negocio y tus clientes seguros en linea.",
+      descripcion: t("services.section3.services.comerce.description"),
     },
     {
-      title: "Paginas coorporativas",
+      title: t("services.section3.services.corporative.title"),
       img: dashboard,
-      descripcion:
-        "Desarrollamos aplicaciones corporativas principalmente dedicadas a dashboards, recursos humanos y analisis de datos.",
+      descripcion: t("services.section3.services.corporative.description"),
     },
     {
-      title: "Microservicios",
+      title: t("services.section3.services.micro.title"),
       img: microServiceImg,
-      descripcion:
-        "¿Hay partes de su aplicación que requieren ser reutilizadas en varios sectores? ¿Necesita escalar una parte especifica de su aplicación pero resulta muy cara hacer cambios en el mismo monolito? ¿Tiene un sistema de legado que necesita actualizarce? Lo que necesita es implementar microservicios",
+      descripcion: t("services.section3.services.micro.description"),
     },
     {
-      title: "Desarrollo de bases de datos",
+      title: t("services.section3.services.database.title"),
       img: databaseImg,
-      descripcion:
-        "Diseñamos el diseño y arquitectura de bases de datos relacionales y no relacionales utlizando tecnologias populares en la nube.",
+      descripcion: t("services.section3.services.database.description"),
     },
     {
-      title: "Desarrollo de APIs robustas para alta carga de usuarios.",
+      title: t("services.section3.services.api.title"),
       img: apiImg,
-      descripcion:
-        "Creamos APIs que mantienen tu logica de negocio segura y mantiendo rendimiento excelente a altas cargas de trabajo.",
+      descripcion: t("services.section3.services.api.description"),
     },
   ];
 
@@ -114,16 +110,13 @@ const ServicePage = () => {
       <Header />
       <main className="text-center justify-items-center">
         <h2 className="text-4xl pt-5 font-extrabold pb-6 text-gray-900 tracking-tight">
-          Desarrollo de software y<br /> aplicaciones
+          {t("services.section1.titleLine1")}
+          <br />
+          {t("services.section1.titleLine2")}
         </h2>
         <div className="container ">
           <p className="px-6 text-lg md:text-xl leading-relaxed mt-4 text-gray-700">
-            En Vortex, nos centramos en ofrecer soluciones seguras, eficientes,
-            versátiles y escalables. Trabajamos con pequeñas páginas de nicho
-            que requieren una página sencilla para crear su funnel, empresas en
-            crecimiento que requieren dashboards y manejo de recursos humanos,
-            hasta comercios con una base de clientes que necesita una página
-            rápida y robusta.
+            {t("services.section1.description1")}
           </p>
         </div>
       </main>
@@ -135,12 +128,7 @@ const ServicePage = () => {
         />
         <div className="container pt-8">
           <p className="lg:text-xl md:text-xl sm:text-lg px-6 leading-relaxed text-gray-700">
-            Disponemos de poderosas herramientas digitales basadas en IA que
-            cubren el front-end, back-end, aplicaciones web y el contenido. Nos
-            encargamos de desarrollar la infraestructura y la arquitectura de su
-            aplicación utilizando los nuevos y modernos estándares de la
-            industria desplegando su aplicación totalmente en la nube con
-            precios asequibles para su emprendimiento.
+            {t("services.section1.description2")}
           </p>
         </div>
       </section>
@@ -148,16 +136,10 @@ const ServicePage = () => {
         <div className="container max-w-6xl mx-auto flex flex-col-reverse lg:flex-row items-center justify-between gap-6 md:gap-12">
           <div className="lg:w-1/2 text-center lg:text-left">
             <h2 className="text-4xl md:text-5xl font-bold text-gray-800">
-              ¿Por qué elegirnos a nosotros?
+              {t("services.section2.title")}
             </h2>
             <p className="text-lg md:text-xl leading-relaxed text-gray-700 mt-4">
-              Lo que nos diferencia es nuestra capacidad para entregar productos
-              sólidos, escalables y utilizando las últimas tecnologías adaptadas
-              a estándares actuales de diseño y arquitectura. Nuestros servicios
-              están centrados en consumir la menor cantidad de recursos,
-              haciéndonos una excelente opción para trabajar con servicios en la
-              nube. Nos adaptamos a las necesidades de nuestros clientes y
-              buscamos sobrepasar sus expectativas.
+              {t("services.section2.description")}
             </p>
           </div>
           <div
@@ -180,7 +162,7 @@ const ServicePage = () => {
       <section className="bg-white py-16">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold mb-12 text-gray-800">
-            Nuestros servicios
+            {t("services.section3.title")}
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
             {servicios.map((servicio, index) => (
