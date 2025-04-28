@@ -15,7 +15,8 @@ import ReCAPTCHA from "react-google-recaptcha";
 
 //Interfaces
 import { IContactFormData } from "../../Interfaces/IContactFormData";
-
+import { IReCaptchaData } from "../../Interfaces/IReCaptchaData";
+import { IReCaptchaResponse } from "../../Interfaces/IReCaptchaResponse";
 //Internal Components
 import Header from "../../Components/Header";
 import Footer from "../../Components/Footer";
@@ -77,8 +78,30 @@ const ContactPage = () => {
       [name]: value,
     }));
   };
+//llamada al api para verificar el reCaptcha
+	const verifyReCaptcha = async (data: IReCaptchaData) => {
+		try{
+			const response = await fetch('http://localhost:8971/VerifyReCaptcha',{
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+				},
+				body: JSON.stringify(data)
+			}); 
+			if(!response.ok){
+				return false;
+			}
+			const result: IReCaptchaResponse = await response.json();
+			if(result.success != null && result.success == true) return true
+			return false;
+		}catch(error){
+			console.error('Error de google al verificar ReCaptcha');
+			throw error;
+		
+		}
+	}
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     setSubmitErrorStatus("");
@@ -89,6 +112,16 @@ const ContactPage = () => {
       return;
     }
 
+		//se crea el objeto de data para enviarselo al api de google
+	const data: IReCaptchaData = {
+		response: recaptchaToken
+		};
+		//Se llama al metodo para verificar el captcha
+	const tokenVerify = await verifyReCaptcha(data);
+  if(!tokenVerify || tokenVerify === null){
+    setSubmitErrorStatus("token no valido");
+    return;
+  }
     setSubmitting(true);
 
     emailjs
