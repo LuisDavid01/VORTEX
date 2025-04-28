@@ -6,8 +6,9 @@ dotenv.config();
 
 const app = express();
 const allowedOrigins = [
+  'http://localhost:5173/',
   'https://vortex-cr.vercel.app',
-  'http://localhost:8971'
+  'vortexsecurity.vercel.app'
 ];
 app.use(cors({ origin: allowedOrigins }));
 app.use(express.json());
