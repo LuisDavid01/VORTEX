@@ -1,0 +1,26 @@
+@font-face {
+	font-family: "GeistMono Nerd Font Mono";
+	src: url("/fonts/GeistMonoNerdFontMono-Regular.otf") format("opentype");
+	font-weight: 400;
+	font-style: normal;
+	font-display: swap;
+}
+
+
+
+@font-face {
+	font-family: "GeistMono Nerd Font Mono";
+	src: url("/fonts/GeistMonoNerdFontMono-SemiBold.otf") format("opentype");
+	font-weight: 600;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "GeistMono Nerd Font Mono";
+	src: url("/fonts/GeistMonoNerdFontMono-Bold.otf") format("opentype");
+	font-weight: 700;
+	font-style: normal;
+	font-display: swap;
+}
+
