@@ -13,8 +13,23 @@ const Header = () => {
   const [loading, setLoading] = useState<boolean>(false);
 
   const navItems = [
-
+    { label: t("nav.home"), id: "home" },
+    { label: t("nav.features"), id: "features" },
+    { label: t("nav.faq"), id: "faq" },
+    { label: t("nav.services"), id: "services" },
   ];
+
+  const scrollToSection = (id: string) => {
+    const el = document.getElementById(id);
+    if (!el) return;
+
+    const header = document.querySelector("header");
+    const headerHeight = header?.getBoundingClientRect().height ?? 0;
+
+    const y =
+      el.getBoundingClientRect().top + window.scrollY - headerHeight - 8; // 8px extra
+    window.scrollTo({ top: y, behavior: "smooth" });
+  };
 
   const toggleLanguage = () => {
     setLoading(true);
@@ -35,11 +50,12 @@ const Header = () => {
   return (
     <>
       {loading && <Spinner overlay bgColor="bg-white" />}
-      <header className="relative bg-white shadow-md">
+
+      <header className="sticky top-0 z-50 bg-white shadow-md">
         <div className="max-w-full mx-auto px-2 py-4 flex justify-between items-center w-full">
           <div
             onClick={() => navigate(PRIVATE_ROUTES.Home.url)}
-            className="flex items-center text-2xl font-bold text-gray-800 cursor-pointer transition-transform duration-300 hover:scale-105"
+            className="flex items-center gap-2 text-2xl font-bold text-gray-800 cursor-pointer transition-transform duration-300 hover:scale-105"
           >
             <img
               src="/vortex.svg"
@@ -52,7 +68,20 @@ const Header = () => {
           </div>
 
           {/* Desktop Navigation */}
-          <nav className="desktop-nav flex items-center">
+          <nav className="desktop-nav flex items-center gap-4">
+            <ul className="flex items-center gap-4">
+              {navItems.map((item) => (
+                <li key={item.id}>
+                  <button
+                    type="button"
+                    onClick={() => scrollToSection(item.id)}
+                    className="text-gray-700 font-medium hover:text-emerald-700 transition-colors duration-200"
+                  >
+                    {item.label}
+                  </button>
+                </li>
+              ))}
+            </ul>
 
             <Button
               handleClick={toggleLanguage}
@@ -65,6 +94,17 @@ const Header = () => {
           {/* Mobile Navigation */}
           <div className="mobile-nav">
             <HamburgerMenu>
+              {navItems.map((item) => (
+                <li key={item.id} className="py-2">
+                  <button
+                    type="button"
+                    onClick={() => scrollToSection(item.id)}
+                    className="w-full text-left text-gray-800 font-semibold hover:text-emerald-700 transition-all duration-300"
+                  >
+                    {item.label}
+                  </button>
+                </li>
+              ))}
 
               <li className="py-2">
                 <Button
