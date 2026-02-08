@@ -26,6 +26,7 @@ jobs:
           run_install: false
 
       - name: Install dependencies
+        working-directory: ./web
         run: pnpm install --frozen-lockfile
 
       - name: Configure AWS credentials
