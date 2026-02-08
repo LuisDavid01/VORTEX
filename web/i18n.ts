@@ -5,9 +5,10 @@ const resources = {
   en: {
     translation: {
       nav: {
+        home: "Home",
         services: "Services",
         faq: "FAQ",
-        contact: "Contact",
+        features: "Features",
       },
       footer: {
         vortex: "© 2026 Vortex. All rights reserved.",
@@ -170,9 +171,10 @@ const resources = {
   es: {
     translation: {
       nav: {
+        home: "Inicio",
         services: "Servicios",
         faq: "FAQ",
-        contact: "Contactar",
+        features: "Características",
       },
       footer: {
         vortex: "© 2026 Vortex. Todos los derechos reservados.",
