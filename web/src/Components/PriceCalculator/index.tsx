@@ -19,7 +19,7 @@ const PriceCalculator = () => {
     let basePrice = 0;
     switch (webType) {
       case "landing":
-        basePrice = 500;
+        basePrice = 5000;
         break;
       case "ecommerce":
         basePrice = 800;
