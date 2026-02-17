@@ -1,11 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 
-interface ServiceSectionProps {
-  id?: string;
-}
 
-export function ServiceSection(props: ServiceSectionProps) {
+export function ServiceSection() {
   const [isVisible, setIsVisible] = useState(false);
   const imageRef = useRef<HTMLDivElement | null>(null);
   const { t } = useTranslation();
@@ -65,7 +62,7 @@ export function ServiceSection(props: ServiceSectionProps) {
 
   return (
     <section
-      id={props.id}
+      id="services"
       className="container mx-auto text-center justify-items-center"
     >
       <h4 className="text-4xl pt-5 font-extrabold pb-6 text-gray-900 ">
@@ -120,28 +117,56 @@ export function ServiceSection(props: ServiceSectionProps) {
           <h2 className="text-3xl font-bold mb-12 text-gray-800">
             {t("services.section3.title")}
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-start">
+          <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 border-1 border-gray-900">
             {servicios.map((servicio, index) => (
               <div
                 key={index}
-                className="bg-gray-50 rounded-xl shadow-lg hover:shadow-xl transform hover:-translate-y-2 transition-all duration-300"
+                className="relative flex flex-col bg-white justify-between cursor-pointer
+                border-1 border-gray-900
+                transition-colors duration-200"
               >
-                <div className="w-full aspect-[16/9] overflow-hidden rounded-md  flex items-center justify-center mb-4">
-                  <img
-                    className="w-full  object-fill md:object-cover"
-                    loading="lazy"
-                    width={800}
-                    height={600}
-                    src={servicio.img}
-                    alt="image servicio"
-                  />
-                </div>
-                <h3 className="text-xl font-semibold mb-4">{servicio.title}</h3>
-                <p className="text-gray-600 prose  pb-3">
+			             <div className="p-6 pb-4">
+                <h3
+                  className={`text-lg font-black mb-3 leading-tight ${
+                   "text-gray-900"                   }`}
+                >
+                  {servicio.title}
+                </h3>
+                <p
+                  className={`text-sm leading-relaxed ${
+                   "text-gray-800" 
+                  }`}
+                >
                   {servicio.descripcion}
                 </p>
               </div>
-            ))}
+			  {/* Mockup imagen — estilo recuadro con borde */}
+              <div
+                className={`
+                  mx-4 mb-4 mt-6 border-2 border-gray-900 overflow-hidden
+                  ${ "shadow-[4px_4px_0px_#d1d5db]"}
+                `}
+              >
+                {/* Barra de "ventana" */}
+                <div
+                  className={`flex items-center gap-1.5 px-3 py-2 border-b-2 border-gray-900 ${
+                    "bg-gray-900"                   }`}
+                >
+                  <div className="w-2.5 h-2.5 rounded-full bg-red-400 border border-gray-700" />
+                  <div className="w-2.5 h-2.5 rounded-full bg-yellow-400 border border-gray-700" />
+                  <div className="w-2.5 h-2.5 rounded-full bg-green-400 border border-gray-700" />
+                </div>
+                {/* Imagen del servicio */}
+                <img
+                  src={servicio.img}
+                  alt={servicio.title}
+                  className="w-full h-40 object-cover"
+                  loading="lazy"
+                />
+              </div>
+            </div>
+
+                            ))}
           </div>
         </div>
       </section>
