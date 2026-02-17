@@ -166,6 +166,20 @@ const resources = {
         submitError: "Error sending the message",
         successMessage: "Your email has been sent successfully",
       },
+	  comparationTable:{
+		  title: "Which features does the service include?",
+		  columns: ["API Services", "Automation with AI", "E-commerce", "Web Package", "Complete Package"],
+		  services: ["Custom solution", "Robust Architecture", "Resiliancy 99.9%", "Automation with bots", "Automation of processes",
+			  "Responsive Web Interface", "Data security", "Admin Dashboard", "Online shop", "Comprehensive documentation","Battle-tested technologies in the market","Custom training"],
+	  },
+	  	  previousWork:{
+		  title: "¿What we have built?",
+		  header: "Previous Work",
+		  clients: ["Clinic Selena"],
+		  products: ["Health care website"],
+	  },
+
+
     },
   },
   es: {
@@ -332,6 +346,20 @@ const resources = {
         submitError: "Error al enviar el mensaje",
         successMessage: "Su correo ha sido enviado exitosamente",
       },
+	  comparationTable:{
+		  title: "¿Qué incluye cada servicio?",
+		  columns: ["Servicios API", "Automatizacion AI", "E-commerce", "Paquete Web", "Paquete Completo"],
+		  services: ["Solución adaptada al negocio", "Arquitectura robusta", "Resiliencia 99.9%", "Automatización con bots", "Automatización de procesos",
+			  "Interfaz web responsiva", "Seguridad de la información", "Dashboard de administrador", "Venta en línea", "Documentación y guías","Tecnologías probadas en el mercado","Capacitaciones"],
+	  },
+	  previousWork:{
+		  title: "¿Qué hemos construido?",
+		  header: "Trabajos anteriores",
+		  clients: ["Clinica Selena"],
+		  products: ["Aplicación de atención médica"],
+
+	  },
+
     },
   },
 };

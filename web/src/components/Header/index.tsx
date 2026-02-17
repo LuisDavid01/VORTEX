@@ -53,9 +53,9 @@ const Header = () => {
 
       <header className="sticky top-0 z-50 bg-white shadow-md">
         <div className="max-w-full mx-auto px-2 py-4 flex justify-between items-center w-full">
-          <div
+          <button
             onClick={() => navigate(PRIVATE_ROUTES.Home.url)}
-            className="flex items-center gap-2 text-2xl font-bold text-gray-800 cursor-pointer transition-transform duration-300 hover:scale-105"
+            className="flex items-center gap-2 text-2xl font-bold text-gray-800 cursor-pointer "
           >
             <img
               src="/vortex.svg"
@@ -65,7 +65,7 @@ const Header = () => {
             <p className="text-sm text-emerald-600 antialiased hover:text-emerald-700 transition-colors duration-300">
               VORTEX
             </p>
-          </div>
+          </button>
 
           {/* Desktop Navigation */}
           <nav className="desktop-nav flex items-center gap-4">
@@ -75,7 +75,7 @@ const Header = () => {
                   <button
                     type="button"
                     onClick={() => scrollToSection(item.id)}
-                    className="text-gray-700 font-medium hover:text-emerald-700 transition-colors duration-200"
+                    className="py-4  font-medium nav-link transition-colors duration-200"
                   >
                     {item.label}
                   </button>
