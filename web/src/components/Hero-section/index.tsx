@@ -60,9 +60,10 @@ export function HeroSection() {
 				</p>
 
 				{/* Buttons */}
-				<div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8 sm:mb-16 animate-fade-in-buttons">
+				<div className="flex flex-col  sm:flex-row items-center justify-center gap-4 mb-8 sm:mb-16 animate-fade-in-buttons">
 					<Button
 						onClick={handleCopyClipboard}
+						className={"text-black"}
 					>
 						{t("landing.btnContact")}
 					</Button>
