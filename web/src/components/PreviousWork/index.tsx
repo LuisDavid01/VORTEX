@@ -20,12 +20,12 @@ export function PreviousWork() {
 	];
 
 	return (
-		<section id="works" className="bg-white py-16 px-4 sm:px-8 lg:px-16">
+		<section id="works" className="py-16 px-4 sm:px-8 lg:px-16">
 			<div className="max-w-7xl mx-auto">
 				<p className="text-xs font-bold tracking-[0.3em] uppercase text-amber-500 mb-3">
 					{t("previousWork.header")}
 				</p>
-				<h4 className="text-4xl sm:text-5xl font-black text-gray-900 leading-tight mb-12">
+				<h4 className="text-4xl sm:text-5xl font-black  leading-tight mb-12">
 					{t("previousWork.title")}
 				</h4>
 
@@ -48,7 +48,7 @@ export function PreviousWork() {
 									rel="noopener noreferrer"
 									className="flex items-center gap-2 group"
 								>
-									<span className="text-2xl sm:text-3xl font-black text-gray-900 tracking-tight group-hover:text-amber-500 transition-colors duration-200">
+									<span className="text-2xl sm:text-3xl font-black tracking-tight group-hover:text-amber-500 transition-colors duration-200">
 										{work.product}
 									</span>
 									<svg
@@ -78,6 +78,7 @@ export function PreviousWork() {
 									</div>
 									<img
 										src={work.img}
+										loading="lazy"
 										className="w-full max-h-[520px] object-cover"
 									/>
 								</div>

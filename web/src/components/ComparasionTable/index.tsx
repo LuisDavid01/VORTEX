@@ -27,11 +27,11 @@ export function ComparisonTable() {
   ];
 
   return (
-    <section id="comparison" className="bg-gray-50 py-16 px-4 sm:px-8 lg:px-16">
+    <section id="comparison" className=" py-16 px-4 sm:px-8 lg:px-16">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
 
-        <h4 className="text-4xl sm:text-5xl font-black text-gray-900 leading-tight mb-12">
+        <h4 className="text-4xl sm:text-5xl font-black  leading-tight mb-12">
 		{t("comparationTable.title")}
         </h4>
 
@@ -41,13 +41,13 @@ export function ComparisonTable() {
             {/* Column headers */}
             <thead>
               <tr>
-                <th className="w-1/3 pb-4 border-b-2 border-gray-900" />
+                <th className="w-1/3 pb-4 border-b-2 border-gray-900 dark:border-gray-200" />
                 {columns.map((col) => (
                   <th
                     key={col}
-                    className="pb-4 border-b-2 border-gray-900 text-center"
+                    className="pb-4 border-b-2 border-gray-900 dark:border-gray-200 text-center"
                   >
-                    <span className="text-[10px] font-black tracking-[0.2em] uppercase text-gray-500">
+                    <span className="text-[10px] font-black tracking-[0.2em] uppercase text-gray-500 dark:text-gray-400">
                       {col}
                     </span>
                   </th>
@@ -61,7 +61,7 @@ export function ComparisonTable() {
                 <tr key={i} className="border-b border-gray-200">
                   {/* Feature label */}
                   <td className="py-5 pr-6">
-                    <span className="text-[11px] font-bold tracking-[0.15em] uppercase text-gray-600">
+                    <span className="text-[11px] font-bold tracking-[0.15em] uppercase text-gray-600 dark:text-gray-400">
                       {feature.label}
                     </span>
                   </td>
