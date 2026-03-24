@@ -116,27 +116,14 @@ export function ServiceSection() {
 					<h2 className="text-3xl font-bold mb-12 ">
 						{t("services.section3.title")}
 					</h2>
-					<div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 border-1 border-gray-900">
+					<div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"> 
 						{servicios.map((servicio, index) => (
 							<div
 								key={index}
-								className="relative flex flex-col  justify-between  border-1 border-gray-900
-                transition-colors duration-200"
+								className="relative flex flex-col  justify-between transition-colors duration-200"
 							>
 								<div className="p-6 pb-4">
-									<h3
-										className={`text-lg  mb-3 leading-tight `}
-									>
-										{servicio.title}
-									</h3>
-									<p
-										className={`text-sm leading-relaxed  
-                  }`}
-									>
-										{servicio.descripcion}
-									</p>
-								</div>
-								{/* Mockup imagen — estilo recuadro con borde */}
+																{/* Mockup imagen — estilo recuadro con borde */}
 								<div
 									className={`
                   mx-4 mb-4 mt-6 border-2 border-gray-900 overflow-hidden
@@ -159,6 +146,19 @@ export function ServiceSection() {
 										loading="lazy"
 									/>
 								</div>
+									<h3
+										className={`text-lg  mb-3 leading-tight `}
+									>
+										{servicio.title}
+									</h3>
+									<p
+										className={`text-sm leading-relaxed  
+                  }`}
+									>
+										{servicio.descripcion}
+									</p>
+								</div>
+
 							</div>
 
 						))}

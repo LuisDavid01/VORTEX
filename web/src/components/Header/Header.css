@@ -24,6 +24,7 @@
     padding: 0.5rem 0;
     position: relative;
     transition: color 0.2s;
+    color: var(--foreground);
 }
 
 
@@ -35,7 +36,7 @@
     left: 0;
     width: 0;
     height: 2px;
-    background-color: #10b981;;
+    background-color: var(--primary);
     transition: width 0.3s;
 }
 
