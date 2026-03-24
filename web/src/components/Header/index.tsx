@@ -51,18 +51,18 @@ const Header = () => {
 		<>
 			{loading && <Spinner overlay bgColor="bg-white" />}
 
-			<header className="sticky top-0 z-50 bg-white shadow-md">
+			<header className="sticky top-0 z-50 bg-zinc-950 border-b border-foreground/10">
 				<div className="max-w-full mx-auto px-2 py-4 flex justify-between items-center w-full">
 					<button
 						onClick={() => navigate(PRIVATE_ROUTES.Home.url)}
-						className="flex items-center gap-2 text-2xl font-bold text-gray-800 cursor-pointer "
+						className="flex items-center gap-2 text-2xl font-bold cursor-pointer px-3 py-1 rounded-lg border border-foreground/20"
 					>
 						<img
 							src="/vortex.svg"
 							alt="VORTEX-icon"
-							className="object-contain md:object-cover w-14"
+							className="object-contain md:object-cover w-32 sm:w-14"
 						/>
-						<p className="text-sm text-emerald-600 antialiased hover:text-emerald-700 transition-colors duration-300">
+						<p className="text-sm text-foreground font-semibold antialiased">
 							VORTEX
 						</p>
 					</button>
@@ -75,12 +75,20 @@ const Header = () => {
 									<button
 										type="button"
 										onClick={() => scrollToSection(item.id)}
-										className="py-4  font-medium nav-link transition-colors duration-200"
+										className="py-4 font-medium nav-link text-foreground transition-colors duration-200"
 									>
 										{item.label}
 									</button>
 								</li>
 							))}
+							<li className="py-2">
+								<Button
+									handleClick={toggleLanguage}
+									buttonClass="w-full text-left text-blue-600 font-semibold hover:text-blue-800 transition-all duration-300"
+								>
+									{i18n.language === "en" ? "Español" : "English"}
+								</Button>
+							</li>
 						</ul>
 
 						<Button
@@ -99,7 +107,7 @@ const Header = () => {
 									<button
 										type="button"
 										onClick={() => scrollToSection(item.id)}
-										className="w-full text-left text-gray-800 font-semibold hover:text-emerald-700 transition-all duration-300"
+										className="w-full text-left text-foreground font-semibold transition-all duration-300"
 									>
 										{item.label}
 									</button>

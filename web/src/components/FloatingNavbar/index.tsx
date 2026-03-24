@@ -1,8 +1,9 @@
 
 import { useState, useEffect, useRef } from "react"
-import { Menu, X, ArrowRight } from "lucide-react"
+import { Menu, X } from "lucide-react"
 import { ThemeToggle } from "../ThemeToggle"
 import { useTranslation } from "react-i18next";
+import Button from "../Button";
 
 
 export function FloatingNavbar() {
@@ -11,6 +12,13 @@ export function FloatingNavbar() {
 	const [hasLoaded, setHasLoaded] = useState(false)
 	const lastScrollY = useRef(0)
 	const { t, i18n } = useTranslation();
+
+	const toggleLanguage = () => {
+		const newLang = i18n.language === "en" ? "es" : "en";
+		i18n.changeLanguage(newLang);
+	};
+
+
 
 	const navigation = [
 		{ name: t("nav.home"), href: "#home" },
@@ -28,13 +36,10 @@ export function FloatingNavbar() {
 				const currentScrollY = window.scrollY
 
 
-				// Only hide/show after scrolling past 50px to avoid flickering at top
 				if (currentScrollY > 50) {
 					if (currentScrollY > lastScrollY.current && currentScrollY - lastScrollY.current > 5) {
-						// Scrolling down - hide navbar
 						setIsVisible(false)
 					} else if (lastScrollY.current - currentScrollY > 5) {
-						// Scrolling up - show navbar
 						setIsVisible(true)
 					}
 				} else {
@@ -47,18 +52,15 @@ export function FloatingNavbar() {
 
 		if (typeof window !== "undefined") {
 			window.addEventListener("scroll", controlNavbar, { passive: true })
-			console.log("[v0] Scroll listener added")
 
 			return () => {
 				window.removeEventListener("scroll", controlNavbar)
 				clearTimeout(timer)
-				console.log("[v0] Scroll listener removed")
 			}
 		}
 
 		return () => clearTimeout(timer)
-	}, []) // Removed lastScrollY dependency to prevent infinite re-renders
-
+	}, [])
 	const scrollToTop = () => {
 		window.scrollTo({ top: 0, behavior: "smooth" })
 	}
@@ -90,7 +92,8 @@ export function FloatingNavbar() {
 	return (
 		<>
 			<nav
-				className={`fixed top-4 md:top-8 left-1/2 -translate-x-1/2 z-50 transition-all duration-500 ${isVisible ? "translate-y-0 opacity-100" : "-translate-y-20 md:-translate-y-24 opacity-0"
+				className={`fixed top-4 md:top-8 left-1/2 -translate-x-1/2 z-50 transition-all duration-500 
+					${isVisible ? "translate-y-0 opacity-100" : "-translate-y-20 md:-translate-y-24 opacity-0"
 					} ${hasLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
 				style={{
 					transition: hasLoaded ? "all 0.5s ease-out" : "opacity 0.8s ease-out, transform 0.8s ease-out",
@@ -98,7 +101,7 @@ export function FloatingNavbar() {
 			>
 				{/* Main Navigation */}
 				<div className="w-[90vw] max-w-xs md:max-w-4xl mx-auto">
-					<div className="dark:bg-black/40 bg-white/50 backdrop-blur-md border border-white/20 rounded-full px-4 py-3 md:px-6 md:py-2">
+					<div className="bg-black/60 backdrop-blur-md border border-white/20 rounded-full px-4 py-3 md:px-6 md:py-2">
 						<div className="flex items-center justify-between gap-4">
 							{/* Logo */}
 							<a
@@ -108,9 +111,10 @@ export function FloatingNavbar() {
 								<div className="w-10 h-10 md:w-12 md:h-12 flex items-center justify-center">
 									<img
 										src="/vortex.svg"
-										alt="Cliste"
+										alt="VORTEX"
 										width={40}
 										height={40}
+										loading="eager"
 										className="w-full h-full object-contain"
 									/>
 								</div>
@@ -123,7 +127,7 @@ export function FloatingNavbar() {
 										<a
 											key={item.name}
 											href={item.href}
-											className=" hover:scale-105 transition-all duration-200 font-medium cursor-pointer"
+											className=" hover:scale-105 transition-all duration-200 font-medium cursor-pointer text-white"
 										>
 											{item.name}
 										</a>
@@ -131,7 +135,7 @@ export function FloatingNavbar() {
 										<button
 											key={item.name}
 											onClick={() => scrollToSection(item.href)}
-											className=" hover:scale-105 transition-all duration-200 font-medium cursor-pointer"
+											className=" hover:scale-105 transition-all duration-200 font-medium cursor-pointer text-white"
 										>
 											{item.name}
 										</button>
@@ -140,14 +144,22 @@ export function FloatingNavbar() {
 							</div>
 
 
-							<div className="hidden md:ml-3 md:block">
+
+							<div className="hidden md:flex md:items-center md:gap-3">
+								<button
+									onClick={toggleLanguage}
+									className="text-2xl hover:scale-110 transition-transform duration-200 cursor-pointer"
+									title={i18n.language === "es" ? "Cambiar a English" : "Cambiar a Español"}
+								>
+									{i18n.language === "es" ? "🇪🇸" : "🇺🇸"}
+								</button>
 								<ThemeToggle />
 							</div>
 
 							{/* Mobile Menu Button */}
 							<button
 								onClick={() => setIsOpen(!isOpen)}
-								className="md:hidden dark:text-white text-black hover:scale-110 transition-transform duration-200 cursor-pointer"
+								className="md:hidden  text-white hover:scale-110 transition-transform duration-200 cursor-pointer"
 							>
 								<div className="relative w-6 h-6">
 									<Menu
@@ -181,14 +193,14 @@ export function FloatingNavbar() {
 						className={`mt-2 w-[90vw] max-w-xs mx-auto transition-all duration-500 ease-out transform-gpu ${isOpen ? "opacity-100 translate-y-0 scale-100" : "opacity-0 -translate-y-8 scale-95 pointer-events-none"
 							}`}
 					>
-						<div className="bg-white/10 dark:bg-black/30 backdrop-blur-md border border-white/20 rounded-2xl p-4 shadow-2xl">
+						<div className="bg-black/30 backdrop-blur-md border border-white/20 rounded-2xl p-4 shadow-2xl">
 							<div className="flex flex-col space-y-1">
 								{navigation.map((item, index) =>
 									item.href.startsWith("/") ? (
 										<a
 											key={item.name}
 											href={item.href}
-											className={` hover:bg-white/10 rounded-lg px-3 py-3 text-left transition-all duration-300 font-medium cursor-pointer transform hover:scale-[1.02] hover:translate-x-1 ${isOpen ? "animate-mobile-menu-item" : ""
+											className={` text-white  rounded-lg px-3 py-3 text-left transition-all duration-300 font-medium cursor-pointer transform hover:scale-[1.02] hover:translate-x-1 ${isOpen ? "animate-mobile-menu-item" : ""
 												}`}
 											style={{
 												animationDelay: isOpen ? `${index * 80 + 100}ms` : "0ms",
@@ -201,7 +213,7 @@ export function FloatingNavbar() {
 										<button
 											key={item.name}
 											onClick={() => scrollToSection(item.href)}
-											className={`hover:bg-white/10 rounded-lg px-3 py-3 text-left transition-all duration-300 font-medium cursor-pointer transform hover:scale-[1.02] hover:translate-x-1 ${isOpen ? "animate-mobile-menu-item" : ""
+											className={`text-white rounded-lg px-3 py-3 text-left transition-all duration-300 font-medium cursor-pointer transform hover:scale-[1.02] hover:translate-x-1 ${isOpen ? "animate-mobile-menu-item" : ""
 												}`}
 											style={{
 												animationDelay: isOpen ? `${index * 80 + 100}ms` : "0ms",
@@ -211,6 +223,14 @@ export function FloatingNavbar() {
 										</button>
 									),
 								)}
+									<button
+										onClick={toggleLanguage}
+										className="text-white w-full rounded-lg px-3 py-3 text-left transition-all duration-300 
+										font-medium cursor-pointer transform hover:scale-[1.02] hover:translate-x-1 flex items-center gap-3"
+									>
+										<span className="text-xl">{i18n.language === "en" ? "🇪🇸" : "🇺🇸"}</span>
+										<span>{i18n.language === "en" ? "Español" : "English"}</span>
+									</button>
 								<ThemeToggle />
 								<div className="h-px bg-white/10 my-2" />
 							</div>
