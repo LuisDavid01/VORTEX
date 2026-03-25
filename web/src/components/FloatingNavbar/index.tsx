@@ -101,7 +101,7 @@ export function FloatingNavbar() {
 			>
 				{/* Main Navigation */}
 				<div className="w-[90vw] max-w-xs md:max-w-4xl mx-auto">
-					<div className="bg-black/60 backdrop-blur-md border border-white/20 rounded-full px-4 py-3 md:px-6 md:py-2">
+					<div className="bg-white/60 dark:bg-black/60 backdrop-blur-sm border border-white/20 rounded-full px-4 py-3 md:px-6 md:py-2">
 						<div className="flex items-center justify-between gap-4">
 							{/* Logo */}
 							<a
@@ -159,7 +159,7 @@ export function FloatingNavbar() {
 							{/* Mobile Menu Button */}
 							<button
 								onClick={() => setIsOpen(!isOpen)}
-								className="md:hidden  text-white hover:scale-110 transition-transform duration-200 cursor-pointer"
+								className="md:hidden  hover:scale-110 transition-transform duration-200 cursor-pointer"
 							>
 								<div className="relative w-6 h-6">
 									<Menu
@@ -179,32 +179,18 @@ export function FloatingNavbar() {
 					</div>
 				</div>
 
-				<div className="md:hidden relative">
-					{/* Backdrop overlay */}
-					<div
-						className={`fixed inset-0  backdrop-blur-sm transition-all duration-300 ${isOpen ? "opacity-100" : "opacity-0 pointer-events-none"
-							}`}
-						onClick={() => setIsOpen(false)}
-						style={{ top: "0", left: "0", right: "0", bottom: "0", zIndex: -1 }}
-					/>
 
-					{/* Menu container */}
-					<div
-						className={`mt-2 w-[90vw] max-w-xs mx-auto transition-all duration-500 ease-out transform-gpu ${isOpen ? "opacity-100 translate-y-0 scale-100" : "opacity-0 -translate-y-8 scale-95 pointer-events-none"
-							}`}
-					>
-						<div className="bg-black/30 backdrop-blur-md border border-white/20 rounded-2xl p-4 shadow-2xl">
+				{isOpen && (
+					<div className="mt-2 w-[90vw] max-w-xs mx-auto transition-all duration-500 ease-out transform-gpu">
+						<div className="bg-white/40 dark:bg-black/40 backdrop-blur-sm border border-white/20 rounded-2xl p-4 shadow-2xl">
 							<div className="flex flex-col space-y-1">
 								{navigation.map((item, index) =>
 									item.href.startsWith("/") ? (
 										<a
 											key={item.name}
 											href={item.href}
-											className={` text-white  rounded-lg px-3 py-3 text-left transition-all duration-300 font-medium cursor-pointer transform hover:scale-[1.02] hover:translate-x-1 ${isOpen ? "animate-mobile-menu-item" : ""
-												}`}
-											style={{
-												animationDelay: isOpen ? `${index * 80 + 100}ms` : "0ms",
-											}}
+											className=" rounded-lg px-3 py-3 text-left transition-all duration-300 font-medium cursor-pointer transform hover:scale-[1.02] hover:translate-x-1 animate-mobile-menu-item"
+											style={{ animationDelay: `${index * 80 + 100}ms` }}
 											onClick={() => setIsOpen(false)}
 										>
 											{item.name}
@@ -213,30 +199,32 @@ export function FloatingNavbar() {
 										<button
 											key={item.name}
 											onClick={() => scrollToSection(item.href)}
-											className={`text-white rounded-lg px-3 py-3 text-left transition-all duration-300 font-medium cursor-pointer transform hover:scale-[1.02] hover:translate-x-1 ${isOpen ? "animate-mobile-menu-item" : ""
-												}`}
-											style={{
-												animationDelay: isOpen ? `${index * 80 + 100}ms` : "0ms",
-											}}
+											className=" rounded-lg px-3 py-3 text-left transition-all duration-300 font-medium cursor-pointer transform hover:scale-[1.02] hover:translate-x-1 animate-mobile-menu-item"
+											style={{ animationDelay: `${index * 80 + 100}ms` }}
 										>
 											{item.name}
 										</button>
 									),
 								)}
-									<button
-										onClick={toggleLanguage}
-										className="text-white w-full rounded-lg px-3 py-3 text-left transition-all duration-300 
-										font-medium cursor-pointer transform hover:scale-[1.02] hover:translate-x-1 flex items-center gap-3"
-									>
-										<span className="text-xl">{i18n.language === "en" ? "🇪🇸" : "🇺🇸"}</span>
-										<span>{i18n.language === "en" ? "Español" : "English"}</span>
-									</button>
+
+								<button
+									onClick={toggleLanguage}
+									className=" w-full rounded-lg px-3 py-3 text-left transition-all duration-300 font-medium cursor-pointer transform hover:scale-[1.02] hover:translate-x-1 flex items-center gap-3"
+								>
+									<span className="text-xl">
+										{i18n.language === "en" ? "🇪🇸" : "🇺🇸"}
+									</span>
+									<span>{i18n.language === "en" ? "Español" : "English"}</span>
+								</button>
+
 								<ThemeToggle />
 								<div className="h-px bg-white/10 my-2" />
 							</div>
 						</div>
 					</div>
-				</div>
+				)}
+
+
 			</nav>
 		</>
 	)
