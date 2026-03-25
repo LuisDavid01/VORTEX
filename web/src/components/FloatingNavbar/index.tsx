@@ -127,7 +127,7 @@ export function FloatingNavbar() {
 										<a
 											key={item.name}
 											href={item.href}
-											className=" hover:scale-105 transition-all duration-200 font-medium cursor-pointer text-white"
+											className=" hover:scale-105 transition-all duration-200 font-medium cursor-pointer"
 										>
 											{item.name}
 										</a>
@@ -135,7 +135,7 @@ export function FloatingNavbar() {
 										<button
 											key={item.name}
 											onClick={() => scrollToSection(item.href)}
-											className=" hover:scale-105 transition-all duration-200 font-medium cursor-pointer text-white"
+											className=" hover:scale-105 transition-all duration-200 font-medium cursor-pointer"
 										>
 											{item.name}
 										</button>
@@ -149,7 +149,7 @@ export function FloatingNavbar() {
 								<button
 									onClick={toggleLanguage}
 									className="text-2xl hover:scale-110 transition-transform duration-200 cursor-pointer"
-									title={i18n.language === "es" ? "Cambiar a English" : "Cambiar a Español"}
+									title={i18n.language === "es" ? "English" : "Español"}
 								>
 									{i18n.language === "es" ? "🇪🇸" : "🇺🇸"}
 								</button>
