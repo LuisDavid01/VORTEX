@@ -73,9 +73,9 @@ const WebServiceLanding = () => {
 	return (
 		<div className="min-h-screen bg-background flex flex-col">
 			<div className=" absolute inset-0 w-full h-full">
-				<Aurora colorStops={["#2f40c2", "#6ead65", "#5e85f7"]}
+				<Aurora colorStops={["#bee981", "#dbd833", "#92e156"]}
 					amplitude={0.5}
-					blend={0.55} />
+					blend={0.2} />
 			</div>
 			<main>
 				<FloatingNavbar />
